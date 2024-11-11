@@ -1,6 +1,8 @@
 //home page, created separate folder pages to have all 5 files in it
 //also these files has to be capitalize
 
+import './Landing.css'
+
 const Landing = () => {
     const handleClicks = () => {    //log clicks 
         console.log('click')
