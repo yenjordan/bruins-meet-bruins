@@ -8,7 +8,6 @@ const Landing = () => {
         console.log('click')
     }
     
-
     return(
         <>
         <div className="landing">
