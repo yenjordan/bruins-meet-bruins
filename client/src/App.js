@@ -1,4 +1,5 @@
 import Landing from './pages/HomePage/Landing'
+import Profile from './pages/HomePage/CreateProfile'
 import {BrowserRouter, Routes, Route} from 'react-router-dom' 
 //installed routing with npm i react-router-dom@6, other group members just need to run 'npm install'
 
