@@ -8,9 +8,10 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 //home page woudl just be localhost.../
 const App = () => {
   return (
-  <BrowserRouter>
+  <BrowserRouter future={{ v7_startTransition: true }}>
     <Routes>
       <Route path={"/"} element={<Landing/>}/>
+      <Route path={"/CreateProfile"} element={<Profile/>}/>
       
     </Routes>
   </BrowserRouter>
