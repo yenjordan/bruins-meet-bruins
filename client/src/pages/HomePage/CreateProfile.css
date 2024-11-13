@@ -25,4 +25,11 @@
 }
 button{
     padding: 8px 12px;
+    cursor: pointer;
 }
+.error
+{
+    color: red;
+    font-size: 14;
+}
+
