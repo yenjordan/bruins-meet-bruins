@@ -6,15 +6,27 @@ export default function Profile() {
     const[lName, setlName] = useState('');
     const[age, setAge] = useState('');
     const[aboutMe, setAboutMe] = useState('');
+    const[error, setError] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(!fName || !lName || !age || !aboutMe){
+            setError("Please fill out all fields.");
+            return;
+        }
+        setError('');
         console.log(fName);
+        setfName('');
+        setlName('');
+        setAge('');
+        setAboutMe('');
     }
 
 
     return (
+        
         <form onSubmit={handleSubmit} className='form-container'>
+            
             <h1>Create your Profile</h1>
             <div className='form-field'>
                 <label for="name">First Name</label>
@@ -32,7 +44,10 @@ export default function Profile() {
                 <label for="aboutMe">About Me</label>
                 <input value={aboutMe} onChange={(e) => setAboutMe(e.target.value)} placeholder='About Me' id='aboutMe' />
             </div>
+            <div className="error">{error}</div>
             <button type="submit">Create Profile</button>
+            
         </form>
+
     )
 }
