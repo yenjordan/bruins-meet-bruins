@@ -6,9 +6,16 @@ body{
   width: 200px;
   margin: 10px auto;  
   padding: 5px;
-  font-size: 15px;
+  font-size: 17px;
   text-transform: uppercase;
+  border-radius: 8px;
+  background-color: lightblue;
+  border: 2px solid gold;
   
+}
+.mainButton:hover {
+  background-color: lightskyblue; 
+  color: white;
 }
 .otherButton{
   display: block;
@@ -16,6 +23,13 @@ body{
   margin: 5px auto;  
   padding: 3px;
   font-size: 15px;
+  border-radius: 8px;
+  background-color: gold;
+  border: 2px solid lightskyblue;
+}
+.otherButton:hover {
+  background-color: goldenrod; 
+  color: white;
 }
 
 /*-- Authentication UI --*/
@@ -36,5 +50,21 @@ body{
   padding: 5px;
   margin: 8px;
   font-size: 17px;
+}
+
+.closeButton{ 
+  border-radius: 50%;       
+  width: 30px;            
+  height: 30px;            
+  display: flex;            
+  align-items: center;     
+  justify-content: center;  
+  font-size: 16px;          
+  background-color: lightblue;
+}
+
+.closeButton:hover {
+  background-color: lightcoral; 
+  color: white;
 }
 
