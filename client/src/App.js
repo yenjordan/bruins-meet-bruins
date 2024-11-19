@@ -1,6 +1,7 @@
-import Landing from './pages/HomePage/Landing'
-import Profile from './pages/HomePage/CreateProfile'
-import {BrowserRouter, Routes, Route} from 'react-router-dom' 
+import Landing from './pages/HomePage/Landing';
+import Profile from './pages/HomePage/CreateProfile';
+import SearchPage from './pages/SearchPage/SearchPage'; // Import the new SearchPage
+import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
 //installed routing with npm i react-router-dom@6, other group members just need to run 'npm install'
 
 
@@ -8,14 +9,14 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 //home page woudl just be localhost.../
 const App = () => {
   return (
-  <BrowserRouter future={{ v7_startTransition: true }}>
-    <Routes>
-      <Route path={"/"} element={<Landing/>}/>
-      <Route path={"/CreateProfile"} element={<Profile/>}/>
-      
-    </Routes>
-  </BrowserRouter>
-  )
-}
+    <BrowserRouter future={{ v7_startTransition: true }}>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/CreateProfile" element={<Profile />} />
+        <Route path="/SearchPage" element={<SearchPage />} /> {/* Add SearchPage route */}
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
 export default App
