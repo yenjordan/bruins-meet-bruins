@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom/client';
 import MessageInput from './Input';
 import './Message.css';
 
@@ -64,5 +63,4 @@ export default function ChatApp() {
   );
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<ChatApp />);
+
