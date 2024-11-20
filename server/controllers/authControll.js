@@ -20,10 +20,13 @@ const signup = async (req, res) => {
         }
         const convertemail = email.toLowerCase()
 
-        //model for Login information that we will send to our database
+        //create new entry in our database
         const newUser = new User({ userId, email: convertemail, hashedPass })
         await newUser.save()
 
+        //will also need to add userID to createprofile database
+
+        //adapted logic from https://www.npmjs.com/package/jsonwebtoken
         const loginToken = jwt.sign(
             { userId, email: convertemail },
             process.env.JWT_SECRET,  

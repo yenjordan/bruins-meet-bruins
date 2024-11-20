@@ -28,7 +28,7 @@ const connectToDB = async () => {
       process.exit(1); 
     }
   };
-  connectToDB();
+  connectToDB();    //conect to databse
 
 //callback function syntax, client sending requests to server,
 //for example, user fills in login information, this needs to be sent to backend server to authenticate
