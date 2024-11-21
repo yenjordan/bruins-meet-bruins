@@ -42,10 +42,6 @@ const SwipePage = () => {
 
     }, []);
 
-    if (error) {
-        return <div>{error}</div>;
-    }
-
     const swiped = useDrag((state) => {
             const {movement: [mx]} = state;
             const trigger = Math.abs(mx) > 150;
