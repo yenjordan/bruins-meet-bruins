@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {useSpring, animated} from 'react-spring';
 import {useDrag} from '@use-gesture/react';
 import './SwipePage.css';
@@ -8,7 +8,8 @@ const SwipePage = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [loading, setLoading] = useState(true)
     const [swipeAction, setSwipeAction] = useState("");
-    
+    const [error, setError] = useState("");
+
     useEffect(() => {
         let isMounted = true;
 
@@ -46,7 +47,7 @@ const SwipePage = () => {
     }
 
     const swiped = useDrag((state) => {
-            const {offset: [x, y], movement: [mx]} = state;
+            const {movement: [mx]} = state;
             const trigger = Math.abs(mx) > 150;
 
             if (trigger) {
