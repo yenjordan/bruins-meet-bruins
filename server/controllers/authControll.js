@@ -2,6 +2,7 @@ const { v4: uuidv4 } = require('uuid')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const User = require('../model/loginInfo')
+const userPreferences = require('../model/preferences')
 require('dotenv').config();
 
 
@@ -23,6 +24,10 @@ const signup = async (req, res) => {
         //create new entry in our database
         const newUser = new User({ userId, email: convertemail, hashedPass })
         await newUser.save()
+        
+        //assocate userId with other collections
+        const newPreference = new userPreferences({ userId })
+        await newPreference.save()
 
         //will also need to add userID to createprofile database
 
