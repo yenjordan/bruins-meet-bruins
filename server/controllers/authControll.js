@@ -3,6 +3,9 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const User = require('../model/loginInfo')
 const userPreferences = require('../model/preferences')
+const userConnections = require('../model/connections')
+const userSwipes = require('../model/swipeRight')
+
 require('dotenv').config();
 
 
@@ -28,6 +31,13 @@ const signup = async (req, res) => {
         //assocate userId with other collections
         const newPreference = new userPreferences({ userId })
         await newPreference.save()
+
+        const newConnection = new userConnections({ userId })
+        await newConnection.save()
+
+        const trackSwipes = new userSwipes({ userId })
+        await trackSwipes.save()
+
 
         //will also need to add userID to createprofile database
 
