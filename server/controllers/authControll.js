@@ -36,7 +36,7 @@ const signup = async (req, res) => {
         await newConnection.save()
 
         const trackSwipes = new userSwipes({ userId })
-        await userSwipes.save()
+        await trackSwipes.save()
 
 
         //will also need to add userID to createprofile database
