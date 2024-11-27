@@ -19,9 +19,14 @@ export default function Profile() {
         
 
         try{
+            const token = localStorage.getItem('token');
             const response = await fetch('http://localhost:8000/profile/createProfile',{
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'},
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ${token}'
+            },
+
                 body: JSON.stringify({
                     firstName: fName,
                     lastName: lName,
