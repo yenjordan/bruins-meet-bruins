@@ -50,7 +50,7 @@ const AuthUi = ({ setAuth, hasAccount }) => {
                 navigate('/CreateProfile')
             }
             if(success && !hasAccount){
-                navigate('/SearchPage') //placeholder for now
+                navigate('/SwipePage') 
             }
 
         }
