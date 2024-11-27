@@ -6,7 +6,7 @@ const route = express.Router()
 route.post('/signup', signup)
 route.post('/login', login)
 
-route.post('/profile', async(req, res) => {
+route.post('/createProfile', async(req, res) => {
     const{firstName, lastName, age, bio} = req.body;
 
     if(!firstName || !lastName || !age || !bio){
