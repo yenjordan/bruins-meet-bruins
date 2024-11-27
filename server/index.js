@@ -15,7 +15,7 @@ const uri = process.env.URI
 const app = express()
 app.use(cors())
 app.use(express.json())
-app.use('./profile', authRoute);
+app.use('/profile', authRoute);
 
 app.use('/', authRoute)
 
