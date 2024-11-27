@@ -8,19 +8,42 @@ export default function Profile() {
     const[aboutMe, setAboutMe] = useState('');
     const[error, setError] = useState('')
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if(!fName || !lName || !age || !aboutMe){
             setError("Please fill out all fields.");
             return;
         }
         setError('');
-        console.log(fName);
-        setfName('');
-        setlName('');
-        setAge('');
-        setAboutMe('');
-    }
+        
+        const formData = new FormData();
+        formData.append('firstName', fName);
+        formData.append('lastName', lName);
+        formData.append('age', age);
+        formData.append('bio', aboutMe);
+
+        try{
+            const response = await fetch('http://localhost:8000/profile/createProfile',{
+                method: 'POST',
+                body: formData,
+        });
+
+            const result = await response.json();
+            if (response.ok){
+                setSuccessMessage('Profile has successfully been created!');
+                setfName('');
+                setlName('');
+                setAboutMe('');
+                setAge('');
+            }else{
+                setError(result.message || 'Failed to create profile');
+            }
+        } catch (err){
+            console.error('Error:', err);
+            setError('An error occurred while creating the profile.');
+        }
+
+    };
 
 
     return (
