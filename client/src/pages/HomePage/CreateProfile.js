@@ -7,6 +7,7 @@ export default function Profile() {
     const[age, setAge] = useState('');
     const[aboutMe, setAboutMe] = useState('');
     const[error, setError] = useState('')
+    const[successMessage, setSuccessMessage] = useState('')
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -16,16 +17,17 @@ export default function Profile() {
         }
         setError('');
         
-        const formData = new FormData();
-        formData.append('firstName', fName);
-        formData.append('lastName', lName);
-        formData.append('age', age);
-        formData.append('bio', aboutMe);
 
         try{
             const response = await fetch('http://localhost:8000/profile/createProfile',{
                 method: 'POST',
-                body: formData,
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    firstName: fName,
+                    lastName: lName,
+                    age,
+                    bio: aboutMe
+                }),
         });
 
             const result = await response.json();
@@ -52,22 +54,23 @@ export default function Profile() {
             
             <h1>Create your Profile</h1>
             <div className='form-field'>
-                <label for="name">First Name</label>
+                <label htmlFor="name">First Name</label>
                 <input value={fName} onChange={(e) => setfName(e.target.value)} placeholder='Joe' id='firstName' />
             </div>
             <div className='form-field'>
-                <label for="lName">Last Name</label>
+                <label htmlFor="lName">Last Name</label>
                 <input value={lName} onChange={(e) => setlName(e.target.value)} placeholder='Bruin' id='lastName' />
             </div>
             <div className='form-field'>
-                <label for="age">Age</label>
+                <label htmlFor="age">Age</label>
                 <input value={age} onChange={(e) => setAge(e.target.value)} placeholder='18' id='age' />
             </div>
             <div className='form-field'>
-                <label for="aboutMe">About Me</label>
+                <label htmlFor="aboutMe">About Me</label>
                 <input value={aboutMe} onChange={(e) => setAboutMe(e.target.value)} placeholder='About Me' id='aboutMe' />
             </div>
-            <div className="error">{error}</div>
+            {error && <div className="error">{error}</div>}
+            {successMessage && <div className='successMessage'>{successMessage}</div>}
             <button type="submit">Create Profile</button>
             
         </form>
