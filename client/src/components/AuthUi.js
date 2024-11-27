@@ -9,7 +9,7 @@ const AuthUi = ({ setAuth, hasAccount }) => {
     const [password, setPassword] = useState('')
     const [passcheck, setPasswordCheck] = useState('')
     const [errormessage, setError] = useState(null)
-    const [ cookie, setCookie, removeCookie ] = useCookies(['user']) 
+    const [ setCookie ] = useCookies(['user']) 
     
     const navigate = useNavigate()     //use react's navigate to get from page to page
 
