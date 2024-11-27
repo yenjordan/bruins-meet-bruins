@@ -2,16 +2,33 @@ import React, { useState } from 'react';
 import './PreferencesPage.css';
 
 const PreferencePage = () => {
-  const [ageRange, setAgeRange] = useState([18, 40]);
+  const [ageRange, setAgeRange] = useState([18, 100]);
   const [newHobby, setNewHobby] = useState('');
   const [hobbies, setHobbies] = useState([]);
 
   const handleAgeChange = (e) => {
     const { name, value } = e.target;
-    setAgeRange((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    
+    setAgeRange((prev) => {
+      const newAgeRange = [...prev];
+      if (value === '') {
+        if (name === 'min') {
+          newAgeRange[0] = '';
+        }
+        else if (name === 'max') {
+          newAgeRange[1] = '';
+        }
+      }
+      else {
+        if (name === 'min') {
+          newAgeRange[0] = Number(value);
+        }
+        else if (name === 'max') {
+          newAgeRange[1] = Number(value);
+        }
+      }
+      return newAgeRange;
+    });
   };
 
   const handleNewHobbyChange = (e) => {
@@ -44,7 +61,7 @@ const PreferencePage = () => {
             <input 
               type="number" 
               name="min" 
-              value={ageRange[0]} 
+              value={ageRange[0] === '' ? '' : ageRange[0]}
               onChange={handleAgeChange} 
               min="18" 
               max="100" 
@@ -53,7 +70,7 @@ const PreferencePage = () => {
             <input 
               type="number" 
               name="max" 
-              value={ageRange[1]} 
+              value={ageRange[1] === '' ? '' : ageRange[1]}
               onChange={handleAgeChange} 
               min="18" 
               max="100" 
@@ -70,13 +87,13 @@ const PreferencePage = () => {
               onChange={handleNewHobbyChange} 
               placeholder="Enter a hobby"
             />
-            <button type="button" onClick={handleAddHobby}>Add Hobby</button>
+            <button type="button" onClick={handleAddHobby}>❤️</button>
           </div>
           <ul className="hobby-list">
             {hobbies.map((hobby, index) => (
               <li key={index} className="hobby-item">
                 {hobby}
-                <button type="button" onClick={() => handleRemoveHobby(hobby)}>Remove</button>
+                <button type="button" onClick={() => handleRemoveHobby(hobby)}>❌</button>
               </li>
             ))}
           </ul>
