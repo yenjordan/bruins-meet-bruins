@@ -5,6 +5,7 @@ const User = require('../model/loginInfo')
 const userPreferences = require('../model/preferences')
 const userConnections = require('../model/connections')
 const userSwipes = require('../model/swipeRight')
+const userProfile = require('../model/profile')
 
 require('dotenv').config();
 
@@ -28,15 +29,17 @@ const signup = async (req, res) => {
         const newUser = new User({ userId, email: convertemail, hashedPass })
         await newUser.save()
         
+        const newProfile = new userProfile({ firstName: " ", lastName: " ", age: -1, bio: " " , userID: userId })
+        await newProfile.save()
         //assocate userId with other collections
-        const newPreference = new userPreferences({ userId })
-        await newPreference.save()
+        // const newPreference = new userPreferences({ userId })
+        // await newPreference.save()
 
-        const newConnection = new userConnections({ userId })
-        await newConnection.save()
+        // const newConnection = new userConnections({ userId })
+        // await newConnection.save()
 
-        const trackSwipes = new userSwipes({ userId })
-        await trackSwipes.save()
+        // const trackSwipes = new userSwipes({ userId })
+        // await trackSwipes.save()
 
 
         //will also need to add userID to createprofile database

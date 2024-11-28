@@ -14,14 +14,14 @@ route.post('/createProfile', authenticate, async(req, res) => {
         return res.status(400).json({message: "Please fill out all fields!"});
     }
     try{
-        const newProfile = new Profile({
-            firstName,
-            lastName,
-            age,
-            bio,
-            userID: req.userID
-        });
-
+        const newProfile = await Profile.findOne({ userID: req.userId })
+        if (!newProfile) {
+            return res.status(404).json({ message: "Profile could not be found" });
+        }
+        newProfile.firstName = firstName
+        newProfile.lastName = lastName
+        newProfile.age = age 
+        newProfile.bio = bio
         await newProfile.save();
         res.status(201).json(newProfile);
     } catch(err){

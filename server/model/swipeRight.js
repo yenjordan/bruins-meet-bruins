@@ -3,15 +3,18 @@ const mongoose = require("mongoose")
 const MySwipes = new mongoose.Schema({
     swiperId: {
         type: String,
+        default: " ",
         required: true
     },
     swipedId:{
         type: String,
+        default: " ",
         required: true
     },
     direction: { 
         type: String, 
         enum: ['right', 'left'], 
+        default: " ",
         required: true },
     time:{
         type: Date,

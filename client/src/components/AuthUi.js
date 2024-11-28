@@ -9,7 +9,7 @@ const AuthUi = ({ setAuth, hasAccount }) => {
     const [password, setPassword] = useState('')
     const [passcheck, setPasswordCheck] = useState('')
     const [errormessage, setError] = useState(null)
-    const [ setCookie ] = useCookies(['user']) 
+    const [ cookies, setCookie, removeCookie ] = useCookies(null) 
     
     const navigate = useNavigate()     //use react's navigate to get from page to page
 
@@ -41,6 +41,7 @@ const AuthUi = ({ setAuth, hasAccount }) => {
             //Cookies implementation and syntax adapted from https://www.npmjs.com/package/react-cookie
             setCookie('LoginToken', respond.data.loginToken)
             setCookie('UserId', respond.data.userId)
+            localStorage.setItem('token', respond.data.loginToken);
 
            
             const success = respond.status === 201   //successful http request

@@ -3,10 +3,13 @@ const mongoose = require("mongoose")
 const MyConnections = new mongoose.Schema({
     userId1: {
         type: String,
+        default: " ",
         required: true
+        
     },
     userId2:{
         type: String,
+        default: " ",
         required: true
     },
     time:{
