@@ -2,46 +2,35 @@ import React, { useState, useEffect } from 'react';
 import {useSpring, animated} from 'react-spring';
 import {useDrag} from '@use-gesture/react';
 import './SwipePage.css';
+import axios from 'axios';
+import { useCookies } from 'react-cookie'
 
 const SwipePage = () => {
     const [profiles, setProfiles] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [loading, setLoading] = useState(true)
     const [swipeAction, setSwipeAction] = useState("");
-    const [error, setError] = useState("");
     const [swiping, setSwiping] = useState(false);
+    const [cookies] = useCookies(['UserId'])
+
+    const userId = cookies.UserId
 
     useEffect(() => {
-        let isMounted = true;
+        const fetchMatchedProfiles = async() => {
+            try{
+            const response = await axios.get('http://localhost:8000/matching/getMatches', {
+                params: { userId }
+            })
+            setProfiles(response.data)
+            setLoading(false)
 
-        const fetchProfiles = async () => {
-            try {
-                const response = await fetch('/api/profiles');
-                if (!response.ok) {
-                    throw new Error('Failed to fetch profiles');
-                }
-                const data = await response.json();
-                if (isMounted) {
-                    setProfiles(data);
-                    setLoading(false);
-                }
-            } catch (error) {
-                console.error('Error fetching profiles:', error);
-                setError('Unable to load profiles at the moment. Please try again later.');
-
-                if (isMounted) {
-                    setLoading(false);
-                }
-            }
-        };
-    
-        fetchProfiles();
-    
-        return () => {
-            isMounted = false;
-        };
-
-    }, []);
+        }catch(error){
+            console.error('Error fetching profiles: ', error)
+            setLoading(false)
+        }
+    }
+        fetchMatchedProfiles()
+    }, [userId]);
 
     const swiped = useDrag(
         (state) => {
@@ -58,7 +47,12 @@ const SwipePage = () => {
                 }
 
                 setTimeout(() => {
-                    setCurrentIndex((prev) => (prev + 1) % profiles.length);
+                    // setCurrentIndex((prev) => (prev + 1) % profiles.length);
+                    if(currentIndex+1 < profiles.length){
+                        setCurrentIndex((prev) => (prev+1))
+                    }else{
+                        setCurrentIndex(profiles.length)
+                    }
                     setSwipeAction("");
                     setSwiping(false);
                 }, 500);
@@ -78,10 +72,10 @@ const SwipePage = () => {
         return <div> Loading profiles ... </div>;
     }
 
-    if (profiles.length === 0 && !loading) {
+    if (currentIndex >= profiles.length) {  //if no more profiles, then stop displaying cards
         return (
             <div>
-                <p>No profiles available at the moment. Please check back later.</p>
+                <p>No more profiles available at the moment. Please check back later.</p>
                 <button onClick={() => setLoading(true)}>Refresh</button>
             </div>
         );
@@ -95,9 +89,10 @@ const SwipePage = () => {
           style={style}
           className="card"
         >
-          <img src={card.img} alt={card.name} />
-          <h3>{card.name}</h3>
-        </animated.div>
+            <img src={card.img} alt={card.name} />
+            <h3>{card.firstName} {card.lastName}</h3>
+            <p>Match Percentage: {card.matchPercentage}%</p>
+            </animated.div>
   
         {swipeAction && (
             <div className="swipe-feedback">
