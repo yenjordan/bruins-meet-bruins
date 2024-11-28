@@ -21,8 +21,7 @@ const profileSchema = new mongoose.Schema({
         required: true
     },
     userID: {
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'User',
+        type: String,
         required: true
     }
 }, {timestamps: true});
