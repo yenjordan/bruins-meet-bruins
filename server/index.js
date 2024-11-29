@@ -9,6 +9,7 @@ require('dotenv').config();
 const authRoute = require('./routes/authRoute')
 const matchingRoute = require('./routes/matchingRoute')
 const swipeRoute = require('./routes/swipeRoute')
+const prefRoute = require('./routes/preferenceRoute')
 //temp uri link, will convert to hidden with env later
 const uri = process.env.URI
  
@@ -21,6 +22,7 @@ app.use('/profile', authRoute);
 app.use('/', authRoute)
 app.use('/matching', matchingRoute)
 app.use('/swipe', swipeRoute)
+app.use('/preferences', prefRoute); // This makes the route available at /preferences/getPreferences
 
 //connect to mongoDB collection
 const connectToDB = async () => {

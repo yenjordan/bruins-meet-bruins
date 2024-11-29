@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import './PreferencesPage.css';
+import { useNavigate } from 'react-router-dom'
+import { useCookies } from 'react-cookie'
+import axios from 'axios'
 
 const PreferencePage = () => {
   const [ageRange, setAgeRange] = useState([18, 100]);
   const [newHobby, setNewHobby] = useState('');
   const [hobbies, setHobbies] = useState([]);
+  const [cookies] = useCookies(['UserId'])
+  const userId = cookies.UserId
+  const navigate = useNavigate()
 
   const handleAgeChange = (e) => {
     const { name, value } = e.target;
@@ -46,9 +52,26 @@ const PreferencePage = () => {
     setHobbies((prev) => prev.filter(item => item !== hobby));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(`Preferences saved! Age range: ${ageRange[0]} - ${ageRange[1]}, Hobbies: ${hobbies.join(', ')}`);
+
+    try{
+      const response = await axios.post('http://localhost:8000/preferences/getPreferences',{
+        userId: userId,
+        ageRange: { min: ageRange[0], max: ageRange[1]},
+        hobbyPreferences: hobbies
+      })
+      if(response.status === 201){
+        alert('Preferences successfuly saved')
+        navigate('/SwipePage')
+      }else{
+        alert('Unexpected reponse from the server')
+      }
+    }catch(error){
+      console.error('Error saving preferences: ', error)
+      alert('Failed to save preferences.')
+    }
+    // alert(`Preferences saved! Age range: ${ageRange[0]} - ${ageRange[1]}, Hobbies: ${hobbies.join(', ')}`);
   };
 
   return (
