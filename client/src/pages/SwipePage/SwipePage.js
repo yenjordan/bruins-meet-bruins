@@ -23,7 +23,7 @@ const SwipePage = () => {
             })
             setProfiles(response.data)
             setLoading(false)
-            setCurrentIndex(0)
+            setCurrentIndex(0)  //adjust current index to be at the begninning when we refresh the page
         }catch(error){
             console.error('Error fetching profiles: ', error)
             setLoading(false)
@@ -32,14 +32,14 @@ const SwipePage = () => {
         fetchMatchedProfiles()
     }, [userId]);
 
-    const handlerightSwipes = async ()=>{
+    const handlerightSwipes = async ()=>{   //send request when swiping right
         try{
             await axios.post('http://localhost:8000/swipe/getSwipes', {
                 swiperId: userId,
                 swipedId: profiles[currentIndex].userID,
                 direction: 'right'
             })
-            setProfiles((prev) => prev.filter((_, index) => index !== currentIndex));
+            setProfiles((prev) => prev.filter((_, index) => index !== currentIndex)); //readjust indexes, filter out users we swiped on
         }catch(error){
             console.error('Error sending swipe to backend:', error)
         }
@@ -51,7 +51,7 @@ const SwipePage = () => {
                 swipedId: profiles[currentIndex].userID,
                 direction: 'left'
             })
-            setProfiles((prev) => prev.filter((_, index) => index !== currentIndex));
+            setProfiles((prev) => prev.filter((_, index) => index !== currentIndex)); //readjust indexes, filter out users we swiped on
         }catch(error){
             console.error('Error sending swipe to backend:', error)
         }
@@ -66,10 +66,10 @@ const SwipePage = () => {
     
                 if (mx > 0) {
                     setSwipeAction("❤️");
-                    handlerightSwipes();
+                    handlerightSwipes();    //handle right swipe action
                 } else {
                     setSwipeAction("💔");
-                    handleleftSwipes();
+                    handleleftSwipes(); //handle left swipe action
                 }
                 setTimeout(() => {
                     setSwipeAction("");
@@ -107,6 +107,7 @@ const SwipePage = () => {
           style={style}
           className="card"
         >
+            {/* Display the user's full name, and also match percentage */}
             <img src={card.img} alt={card.name} />
             <h3>{card.firstName} {card.lastName}</h3>
             <p>Match Percentage: {card.matchPercentage}%</p>
