@@ -18,7 +18,11 @@ function stemmer(word){
 
  //split sentences into individual words
 function processTexts(text){   
-    const splitword = text.split(/\s+/)
+    if(!text){
+        return []
+    }
+    const cleanedText = text.replace(/[.,!?;:()"]/g, '').toLowerCase(); //use regex filter to remove punctuation when parsing
+    const splitword = cleanedText.split(/\s+/)  //after removing puncation, split a text into invidiual words
     
     return splitword.map(stemmer)
 }
@@ -36,7 +40,7 @@ const getMatches = async (req, res) => {
         //get data from preference collection of the current user
         const { ageRange, hobbyPreferences } = userPreferences;   
 
-        if (!ageRange) {
+        if (!ageRange || !hobbyPreferences || hobbyPreferences.length == 0) {
             return res.status(400).json({ message: 'Age range is missing in user preferences' });
         }
 
@@ -46,7 +50,7 @@ const getMatches = async (req, res) => {
             return res.status(400).json({ message: 'Invalid format for Age' })
         }
 
-        //query profiles, filter according to age
+        //query profiles, filter users according to age
         const filterMatches = await Profile.find({
             userID: { $ne: userId }, // exclude the current user
             age: {$gte: minAge, $lte: maxAge} //greater than or equal to min , less than or equal to max
@@ -55,19 +59,22 @@ const getMatches = async (req, res) => {
         // console.log(userId)
         // console.log("Query userId:", userId, "Type:", typeof userId);
 
-        if (filterMatches.length <= 0) {
+        if (filterMatches.length == 0) {
             return res.status(404).json({ message: 'No matching profiles found' });
         }
         // process hobbies and calculate match percentages
-        const processPreferences = hobbyPreferences.map(stemmer);
+        //utilize set for faster traversal and storage of the stemmed words
+        
+        //parse our array of strings and join it as 'one string' then process each word
+        const processPreferences = new Set(processTexts(hobbyPreferences.join(' ')))
 
         const sortMatches = filterMatches.map((profile) => {
             const keyWords = processTexts(profile.bio); //split user bio into words
+            const stemmedWords = new Set(keyWords)  //store each parsed word in our bio into a set
             
-            //find and associate matching words from bio with the preferences, store that length as a number
-            const matchedkeyWords = processPreferences.filter((hobby) =>
-                keyWords.includes(hobby)
-            ).length;
+            //find and associate matching words from bio with the preferences,comparing the elements of two sets
+            // store that length as a number
+            const matchedkeyWords = [...processPreferences].filter(pref => stemmedWords.has(pref)).length
 
             //calculate match percentage with user
             const matchPercentage = Math.round((matchedkeyWords / hobbyPreferences.length) * 100);
