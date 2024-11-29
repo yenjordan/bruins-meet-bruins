@@ -23,7 +23,7 @@ const SwipePage = () => {
             })
             setProfiles(response.data)
             setLoading(false)
-
+            setCurrentIndex(0)
         }catch(error){
             console.error('Error fetching profiles: ', error)
             setLoading(false)
@@ -32,32 +32,50 @@ const SwipePage = () => {
         fetchMatchedProfiles()
     }, [userId]);
 
+    const handlerightSwipes = async ()=>{
+        try{
+            await axios.post('http://localhost:8000/swipe/getSwipes', {
+                swiperId: userId,
+                swipedId: profiles[currentIndex].userID,
+                direction: 'right'
+            })
+            setProfiles((prev) => prev.filter((_, index) => index !== currentIndex));
+        }catch(error){
+            console.error('Error sending swipe to backend:', error)
+        }
+    };
+    const handleleftSwipes = async ()=>{
+        try{
+            await axios.post('http://localhost:8000/swipe/getSwipes', {
+                swiperId: userId,
+                swipedId: profiles[currentIndex].userID,
+                direction: 'left'
+            })
+            setProfiles((prev) => prev.filter((_, index) => index !== currentIndex));
+        }catch(error){
+            console.error('Error sending swipe to backend:', error)
+        }
+    };
     const swiped = useDrag(
         (state) => {
             const { movement: [mx] } = state;
             const trigger = Math.abs(mx) > 200;
-
-            if (trigger && !swiping) { 
+    
+            if (trigger && !swiping) {
                 setSwiping(true);
+    
                 if (mx > 0) {
                     setSwipeAction("❤️");
-                }
-                else {
+                    handlerightSwipes();
+                } else {
                     setSwipeAction("💔");
+                    handleleftSwipes();
                 }
-
                 setTimeout(() => {
-                    // setCurrentIndex((prev) => (prev + 1) % profiles.length);
-                    if(currentIndex+1 < profiles.length){
-                        setCurrentIndex((prev) => (prev+1))
-                    }else{
-                        setCurrentIndex(profiles.length)
-                    }
                     setSwipeAction("");
                     setSwiping(false);
                 }, 500);
             }
-            return [];
         },
         { axis: 'x', filterTaps: true }
     );

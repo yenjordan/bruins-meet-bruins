@@ -1,5 +1,6 @@
 const Profile = require('../model/profile')
 const Preferences= require('../model/preferences')
+const userSwipes = require('../model/swipeRight')
 
 //remove suffixes from end of word: ex "swimming" matches with "swim"
 function stemmer(word){
@@ -50,9 +51,13 @@ const getMatches = async (req, res) => {
             return res.status(400).json({ message: 'Invalid format for Age' })
         }
 
+        const swipedUsers = await userSwipes.find({ swiperId: userId}).select('swipedId')
+        const swipedIds = swipedUsers.map(swipe => swipe.swipedId)
+
         //query profiles, filter users according to age
         const filterMatches = await Profile.find({
-            userID: { $ne: userId }, // exclude the current user
+            userID: { $ne: userId, $nin: swipedIds }, // exclude the current user and users we already swiped on
+            // userID: { $ne: userId}, 
             age: {$gte: minAge, $lte: maxAge} //greater than or equal to min , less than or equal to max
         });
         // console.log(filterMatches)

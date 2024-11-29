@@ -12,11 +12,6 @@ const MyConnections = new mongoose.Schema({
         default: " ",
         required: true
     },
-    time:{
-        type: Date,
-        default: Date.now
-    }
-
-}, { collection: 'connections' });
+    }, { collection: 'connections' });
 
 module.exports = mongoose.model("connections", MyConnections)

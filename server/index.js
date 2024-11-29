@@ -8,6 +8,7 @@ require('dotenv').config();
 
 const authRoute = require('./routes/authRoute')
 const matchingRoute = require('./routes/matchingRoute')
+const swipeRoute = require('./routes/swipeRoute')
 //temp uri link, will convert to hidden with env later
 const uri = process.env.URI
  
@@ -19,6 +20,7 @@ app.use('/profile', authRoute);
 
 app.use('/', authRoute)
 app.use('/matching', matchingRoute)
+app.use('/swipe', swipeRoute)
 
 //connect to mongoDB collection
 const connectToDB = async () => {

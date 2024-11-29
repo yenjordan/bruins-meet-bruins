@@ -16,11 +16,7 @@ const MySwipes = new mongoose.Schema({
         enum: ['right', 'left'], 
         default: " ",
         required: true },
-    time:{
-        type: Date,
-        default: Date.now
-    }
-
-}, { collection: 'swipes' });
+        
+    }, { collection: 'swipes' });
 
 module.exports = mongoose.model("swipes", MySwipes)

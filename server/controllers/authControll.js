@@ -3,8 +3,6 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const User = require('../model/loginInfo')
 const userPreferences = require('../model/preferences')
-const userConnections = require('../model/connections')
-const userSwipes = require('../model/swipeRight')
 const userProfile = require('../model/profile')
 
 require('dotenv').config();
