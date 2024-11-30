@@ -20,8 +20,10 @@ const Landing = () => {
     return (
         <>
             <div className="landing">
+            <div className="flex-container">contact us via clientservices@bruinsmeetbruins.com</div>
+                <img src="/logob.png" alt="logo" style={{ width: '170px', height: '200px' }}/>
                 <h1 className="logo-text">♡ Bruins Meet Bruins ♡</h1>
-                <h2 className="subtext">We believe your true love bleeds blue and gold, just the same as you.</h2>
+                <h2 className="subtext">We believe your true love bleeds blue and gold, just like you. </h2>
                 <h2 className="subtext">Login or create an account now to discover your soulmate. </h2>
                 <button className="mainButton" onClick={() => handleClicks(true)}>
                     {logToken ? 'Signout' : 'Create an Account'}

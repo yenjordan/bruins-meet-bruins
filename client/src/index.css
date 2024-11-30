@@ -1,5 +1,6 @@
 body{
-    font-family: 'Roboto', sans-serif;
+    font-family: 'text';
+    color: #002244;
     }
 
 html {
@@ -21,12 +22,19 @@ html {
     font-style: normal;
   }
 
+  @font-face {
+    font-family: 'text';
+    src: url('./LinLibertine_DR.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
 .logo-text {
     font-family: 'Edwardian Script ITC', cursive;
 }
 
 .subtext {
-  font-family: 'subtext', cursive;
+  font-family: 'subtext';
 }
 
 h1 {
