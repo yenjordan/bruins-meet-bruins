@@ -6,3 +6,20 @@ html {
     padding: 0;
     margin: 0;
 }
+
+@font-face {
+    font-family: 'Edwardian Script ITC';
+    src: url('./edwardian-script-itc.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+
+.logo-text {
+    font-family: 'Edwardian Script ITC', cursive;
+}
+
+h1 {
+    font-size: 70px;
+    color: #002244;
+  }

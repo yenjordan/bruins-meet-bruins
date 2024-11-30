@@ -19,8 +19,8 @@ const Landing = () => {
     return (
         <>
             <div className="landing">
-                <h1>Bruin Meets Bruin</h1>
-                <h2>Come Meet Other Bruins!</h2>
+                <h1 className="logo-text">♡ Bruins Meet Bruins ♡</h1>
+                <h2>From Royce to Pauley, Find Your Match on the True Blue Path to Love 💙💛</h2>
                 <button className="mainButton" onClick={() => handleClicks(true)}>
                     {logToken ? 'Signout' : 'Create an Account'}
                 </button>
