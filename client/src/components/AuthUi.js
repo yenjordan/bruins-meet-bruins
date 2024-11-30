@@ -74,7 +74,7 @@ const AuthUi = ({ setAuth, hasAccount }) => {
     return( //Interface for logging and signing in
         <div className="auth_Ui">       
             <button onClick={handleClick} className="closeButton">X</button>
-            <h2>{hasAccount ? 'Create Your Account!' : 'Log In!'}</h2>   
+            <h2>{hasAccount ? 'Create Your Account' : 'Log In'}</h2>   
         <form onSubmit={handlelogin}> 
             <input      
                 type = "email" 
