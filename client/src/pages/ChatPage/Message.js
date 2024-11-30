@@ -9,12 +9,14 @@ import { useNavigate } from 'react-router-dom'
 export default function ChatApp() {
   const [selectedUser, setSelectedUser] = useState(0);
   const [messagesByUser, setMessagesByUser] = useState({});
-  
   const [connections, setConnections] = useState([]) //list/array of connected users
- 
   const [cookies] = useCookies(['UserId'])  //grab current userId from cookies
   const userId = cookies.UserId 
+  const navigate = useNavigate()
 
+  const handleSwipe = () => {
+    navigate('/SwipePage')
+}
   //fetch our connections of the current users
     useEffect(() => {
       const fetchConnections = async () =>{
@@ -84,6 +86,7 @@ export default function ChatApp() {
         <div className="footer">
           <MessageInput addMessage={(text, isUserMessage) => addMessage(text, isUserMessage, selectedUser)} />
         </div>
+        <button onClick={handleSwipe} className="swipe-button">Back to Swipe Page</button>
       </div>
     );
   };
