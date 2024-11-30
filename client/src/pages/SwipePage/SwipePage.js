@@ -4,6 +4,7 @@ import {useDrag} from '@use-gesture/react';
 import './SwipePage.css';
 import axios from 'axios';
 import { useCookies } from 'react-cookie'
+import { useNavigate } from 'react-router-dom'
 
 const SwipePage = () => {
     const [profiles, setProfiles] = useState([]);
@@ -11,9 +12,16 @@ const SwipePage = () => {
     const [loading, setLoading] = useState(true)
     const [swipeAction, setSwipeAction] = useState("");
     const [swiping, setSwiping] = useState(false);
-    const [cookies] = useCookies(['UserId'])
+    const [cookies, setCookie, removeCookie] = useCookies(['UserId'])
 
     const userId = cookies.UserId
+    const navigate = useNavigate()
+   
+    const handleSignout = () => {
+        removeCookie('UserId')
+        removeCookie('LoginToken')
+        navigate('/')
+    }
 
     useEffect(() => {
         const fetchMatchedProfiles = async() => {
@@ -95,13 +103,14 @@ const SwipePage = () => {
             <div>
                 <p>No more profiles available at the moment. Please check back later.</p>
                 <button onClick={() => setLoading(true)}>Refresh</button>
+                <button onClick={handleSignout} className="signout-button">Sign Out</button>
             </div>
         );
     }   
-
     const card = profiles[currentIndex];
     return (
         <div className="swipe-container">
+        <button onClick={handleSignout} className="signout-button">Sign Out</button>
         <animated.div
           {...swiped()}
           style={style}
