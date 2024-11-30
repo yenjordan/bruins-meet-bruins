@@ -39,7 +39,7 @@ const AuthUi = ({ setAuth, hasAccount }) => {
                 setError('Passwords do not match! Please try again.')
                 return
             }
-            
+
             const urlLogin = hasAccount ? 'http://localhost:8000/signup' : 'http://localhost:8000/login'
             //pass email and pass to backend
             const respond = await axios.post(urlLogin, { email, password}) 
@@ -48,7 +48,7 @@ const AuthUi = ({ setAuth, hasAccount }) => {
             setCookie('LoginToken', respond.data.loginToken)
             setCookie('UserId', respond.data.userId)
             localStorage.setItem('token', respond.data.loginToken);
-
+            // console.log("Login Token:", respond.data.loginToken);
            
             const success = respond.status === 201   //successful http request
 

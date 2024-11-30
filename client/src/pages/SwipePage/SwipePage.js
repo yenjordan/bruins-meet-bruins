@@ -20,6 +20,7 @@ const SwipePage = () => {
     const handleSignout = () => {
         removeCookie('UserId')
         removeCookie('LoginToken')
+        localStorage.removeItem('token'); //remove login token we generated
         navigate('/')
     }
 
