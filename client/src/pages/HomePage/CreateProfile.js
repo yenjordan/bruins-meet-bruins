@@ -60,7 +60,7 @@ export default function Profile() {
             <h1>Create your Profile</h1>
             <div className='form-field'>
                 <label htmlFor="name">First Name</label>
-                <input value={fName} onChange={(e) => setfName(e.target.value)} placeholder='Joe' id='firstName' />
+                <input value={fName} onChange={(e) => setfName(e.target.value)} placeholder='Joe / Josie' id='firstName' />
             </div>
             <div className='form-field'>
                 <label htmlFor="lName">Last Name</label>
@@ -72,7 +72,7 @@ export default function Profile() {
             </div>
             <div className='form-field'>
                 <label htmlFor="aboutMe">About Me</label>
-                <input value={aboutMe} onChange={(e) => setAboutMe(e.target.value)} placeholder='About Me' id='aboutMe' />
+                <input value={aboutMe} onChange={(e) => setAboutMe(e.target.value)} placeholder='Go Bruins!' id='aboutMe' />
             </div>
             {error && <div className="error">{error}</div>}
             {successMessage && <div className='successMessage'>{successMessage}</div>}

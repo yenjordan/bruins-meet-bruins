@@ -5,6 +5,7 @@ import { useCookies } from 'react-cookie'
 import axios from 'axios'
 
 const PreferencePage = () => {
+  document.body.style.backgroundColor = '#B9D9EB';
   const [ageRange, setAgeRange] = useState([18, 100]);
   const [newHobby, setNewHobby] = useState('');
   const [hobbies, setHobbies] = useState([]);
