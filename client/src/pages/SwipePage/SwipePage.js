@@ -12,7 +12,7 @@ const SwipePage = () => {
     const [loading, setLoading] = useState(true)
     const [swipeAction, setSwipeAction] = useState("");
     const [swiping, setSwiping] = useState(false);
-    const [cookies, setCookie, removeCookie] = useCookies(['UserId'])
+    const [cookies, removeCookie] = useCookies(['UserId'])
 
     const userId = cookies.UserId
     const navigate = useNavigate()

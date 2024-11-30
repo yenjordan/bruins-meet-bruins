@@ -9,7 +9,7 @@ const AuthUi = ({ setAuth, hasAccount }) => {
     const [password, setPassword] = useState('')
     const [passcheck, setPasswordCheck] = useState('')
     const [errormessage, setError] = useState(null)
-    const [ cookies, setCookie, removeCookie ] = useCookies(null) 
+    const [ , setCookie ] = useCookies(null) 
     
     const navigate = useNavigate()     //use react's navigate to get from page to page
 
@@ -28,12 +28,18 @@ const AuthUi = ({ setAuth, hasAccount }) => {
 
     const handlelogin = async (e) => {
         e.preventDefault()
+        //add additional check to make sure only ucla students can create accounts
+        if (hasAccount && !email.endsWith('@ucla.edu')) {
+            setError('Only users with a UCLA email (@ucla.edu) can create an account!');
+            return
+        }
+
         try{        //checks for passwords matching
             if(hasAccount && (password !== passcheck)){
                 setError('Passwords do not match! Please try again.')
                 return
             }
-
+            
             const urlLogin = hasAccount ? 'http://localhost:8000/signup' : 'http://localhost:8000/login'
             //pass email and pass to backend
             const respond = await axios.post(urlLogin, { email, password}) 
@@ -56,7 +62,13 @@ const AuthUi = ({ setAuth, hasAccount }) => {
 
         }
         catch(error){
-            console.log(error)
+            if (error.response && error.response.status === 409) {
+                setError('User with this email already exists! Please login.');
+            } 
+            else {
+                console.log(error);
+                setError('An error occurred. Please try again later.');
+            }
         }
     }
     return( //Interface for logging and signing in
