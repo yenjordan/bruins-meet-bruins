@@ -10,7 +10,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 //routing is what the links will look like, ex: chat page will be localhost.../chat,
 //home page woudl just be localhost.../
-
+/*
 const App = () => {
   return (
     <BrowserRouter future={{ v7_startTransition: true }}>
@@ -19,6 +19,18 @@ const App = () => {
         <Route path="/CreateProfile" element={<Profile />} />
         <Route path="/SearchPage" elcdement={<SearchPage />} /> 
         <Route path="/Message" element={<ChatPage />} />
+        <Route path="/SwipePage" element={<SwipePage />} />
+        <Route path="/PreferencesPage" element={<PreferencesPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};*/
+
+const App = () => {
+  return (
+    <BrowserRouter future={{ v7_startTransition: true }}>
+      <Routes>
+        <Route path="/" element={<ChatPage />} />
         <Route path="/SwipePage" element={<SwipePage />} />
         <Route path="/PreferencesPage" element={<PreferencesPage />} />
       </Routes>

@@ -90,3 +90,9 @@
   padding: 10px;
 }
 
+.preference-button {
+  position: fixed;
+  top: 60px;
+  left: 10px;
+  padding: 10px;
+}
