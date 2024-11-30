@@ -24,6 +24,10 @@ const SwipePage = () => {
         navigate('/')
     }
 
+    const handleChat = () => {
+        navigate('/Message')
+    }
+
     useEffect(() => {
         const fetchMatchedProfiles = async() => {
             try{
@@ -105,6 +109,7 @@ const SwipePage = () => {
                 <p>No more profiles available at the moment. Please check back later.</p>
                 <button onClick={() => setLoading(true)}>Refresh</button>
                 <button onClick={handleSignout} className="signout-button">Sign Out</button>
+                <button onClick={handleChat} className="chat-button">Go To Chat Page</button>
             </div>
         );
     }   
@@ -112,6 +117,7 @@ const SwipePage = () => {
     return (
         <div className="swipe-container">
         <button onClick={handleSignout} className="signout-button">Sign Out</button>
+        <button onClick={handleChat} className="chat-button">Go To Chat Page</button>
         <animated.div
           {...swiped()}
           style={style}
