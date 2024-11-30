@@ -14,12 +14,27 @@ html {
     font-style: normal;
   }
   
+  @font-face {
+    font-family: 'subtext';
+    src: url('./LinLibertine_RZ.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
 
 .logo-text {
     font-family: 'Edwardian Script ITC', cursive;
 }
 
+.subtext {
+  font-family: 'subtext', cursive;
+}
+
 h1 {
     font-size: 70px;
+    color: #002244;
+  }
+
+h2  {
+    font-size: 20px;
     color: #002244;
   }
