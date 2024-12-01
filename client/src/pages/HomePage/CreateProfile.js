@@ -8,40 +8,42 @@ export default function Profile() {
     const[aboutMe, setAboutMe] = useState('');
     const[error, setError] = useState('')
     const[successMessage, setSuccessMessage] = useState('')
-    const [profilePic, setProfilePic] = useState(null);
+    const [img, setImg] = useState(null);
 
     const handleFileChange = (e) => {
-        setProfilePic(e.target.files[0]);
+        const file = e.target.files[0]
+        console.log('Selected file:', file)
+        if (file){
+            setImg(file);
+        }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if(!fName || !lName || !age || !aboutMe || !profilePic){
+        if(!fName || !lName || !age || !aboutMe|| !img){
             setError("Please fill out all fields.");
             return;
         }
         setError('');
-        
 
+        const formData = new FormData();
+        formData.append('image', img);
         try{
 
-            const formData = new FormData();
-            formData.append('image', profilePic);
-            const imgurResponse = await fetch('https://api.imgur.com/3/image', {
+            const imgResponse = await fetch('http://localhost:8000/upload', {
                 method: 'POST',
-                headers: {
-                    Authorization: 'Client-ID 4f9492f5ff16c40'
-                },
                 body: formData,
             });
 
-            const imgurResult = await response.json();
-            if(!response.ok)
+            
+            const imgData = await imgResponse.json();
+            console.log('Image data:', imgData);
+            if(!imgResponse.ok)
             {
-                throw new Error(imgurResult.data.error);
+                throw new Error(imgData.error);
             }
 
-            const imageUrl = imgurResult.data.link;
+            const imageUrl = imgData.imageurl;
 
             const token = localStorage.getItem('token');
             const response = await fetch('http://localhost:8000/profile/createProfile',{
@@ -56,7 +58,7 @@ export default function Profile() {
                     lastName: lName,
                     age,
                     bio: aboutMe,
-                    profilePic: imageUrl
+                    img: imageUrl
                 }),
         });
 
@@ -67,7 +69,7 @@ export default function Profile() {
                 setlName('');
                 setAboutMe('');
                 setAge('');
-                setProfilePic(null);
+                setImg(null);
             }else{
                 setError(result.message || 'Failed to create profile');
             }
@@ -101,8 +103,8 @@ export default function Profile() {
                 <input value={aboutMe} onChange={(e) => setAboutMe(e.target.value)} placeholder='Go Bruins!' id='aboutMe' />
             </div>
             <div className='form-field'>
-                <label htmlFor="profilePic">Profile Picture</label>
-                <input type='file' onChange={handleFileChange} id='profilePic'/>
+                <label htmlFor="img">Profile Picture</label>
+                <input type='file' onChange={handleFileChange} id='img'/>
 
             </div>
             {error && <div className="error">{error}</div>}
