@@ -98,23 +98,27 @@ export default function ChatApp() {
       const messages = messagesByUser[selectedUser] || [];
   
       return (
-          <div className="contentArea">
-              <div className="chatHeader">
-                  <h2>{connections.find(conn => conn.userID === selectedUser)?.firstName || 'Chat'}</h2>
-              </div>
-              <div className="messageList">
-                  {messages.map((message, index) => (
-                      <div key={index} className={`message ${message.isUserMessage ? 'userMessage' : 'botMessage'}`}>
-                          {message.content || "No content available"} {/* Display actual message content */}
-                      </div>
-                  ))}
-              </div>
-              <div className="footer">
-                  <MessageInput addMessage={(text, isUserMessage) => addMessage(text, isUserMessage, selectedUser)} />
-              </div>
+        <div className="contentArea">
+          <div className="chatHeader">
+            <h2>{connections.find((conn) => conn.userID === selectedUser)?.firstName || 'Chat'}</h2>
+            {/* Add Back to Swipe Page Button */}
+            <button onClick={handleSwipe} className="swipe-button">
+              Back to Swipe Page
+            </button>
           </div>
+          <div className="messageList">
+            {messages.map((message, index) => (
+              <div key={index} className={`message ${message.isUserMessage ? 'userMessage' : 'botMessage'}`}>
+                {message.content || 'No content available'} {/* Display actual message content */}
+              </div>
+            ))}
+          </div>
+          <div className="footer">
+            <MessageInput addMessage={(text, isUserMessage) => addMessage(text, isUserMessage, selectedUser)} />
+          </div>
+        </div>
       );
-  };
+    };
   
 
   return (
