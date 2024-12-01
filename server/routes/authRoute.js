@@ -8,9 +8,9 @@ route.post('/signup', signup)
 route.post('/login', login)
 
 route.post('/createProfile', authenticate, async(req, res) => {
-    const{firstName, lastName, age, bio} = req.body;
+    const{firstName, lastName, age, bio, profilePicture} = req.body;
 
-    if(!firstName || !lastName || !age || !bio){
+    if(!firstName || !lastName || !age || !bio|| !profilePicture){
         return res.status(400).json({message: "Please fill out all fields!"});
     }
     try{
@@ -22,6 +22,7 @@ route.post('/createProfile', authenticate, async(req, res) => {
         newProfile.lastName = lastName
         newProfile.age = age 
         newProfile.bio = bio
+        newProfile.profilePicture = profilePicture
         await newProfile.save();
         res.status(201).json(newProfile);
     } catch(err){
