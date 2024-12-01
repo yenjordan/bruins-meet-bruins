@@ -1,5 +1,5 @@
 // controllers/messageControl.js
-const Message = require('../models/message');
+const Message = require('../model/message');
 
 // Save a message
 const saveMessage = async (req, res) => {
