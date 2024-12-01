@@ -38,16 +38,21 @@ export default function ChatApp() {
           const response = await axios.get('http://localhost:8000/messages/getMessages', {
               params: { userId1: cookies.UserId, userId2: userId },
           });
-          console.log("Fetched messages from API:", response.data); // Log API response
+  
+          const messages = response.data.map((message) => ({
+              ...message,
+              isUserMessage: message.senderId === cookies.UserId, // Determine if the current user sent the message
+          }));
   
           setMessagesByUser((prev) => ({
               ...prev,
-              [userId]: response.data,
+              [userId]: messages,
           }));
       } catch (error) {
-          console.error('Error fetching messages:', error);
+          console.error("Error fetching messages:", error);
       }
-  };  
+  };
+  
     
     // Update the sidebar to fetch messages when a user is selected
     const Sidebar = ({ connections, selectedUser, setSelectedUser }) => {
@@ -76,22 +81,34 @@ export default function ChatApp() {
     
     // Add messages to the database and update state
     const addMessage = async (text, isUserMessage, userId) => {
-        try {
-            const response = await axios.post('http://localhost:8000/messages/saveMessage', {
-                senderId: cookies.UserId,
-                receiverId: userId,
-                content: text,
-            });
-    
-            const newMessage = { text, isUserMessage };
-            setMessagesByUser((prev) => ({
-                ...prev,
-                [userId]: [...(prev[userId] || []), newMessage],
-            }));
-        } catch (error) {
-            console.error('Error saving message:', error);
-        }
-    };
+      if (!text.trim()) {
+          console.error("Cannot send an empty message.");
+          return;
+      }
+  
+      try {
+          // Save the message to the database
+          const response = await axios.post('http://localhost:8000/messages/saveMessage', {
+              senderId: cookies.UserId,
+              receiverId: userId,
+              content: text, // The actual message content
+          });
+  
+          // Update local state with the saved message
+          const newMessage = {
+              content: text, // Ensure this is the correct field
+              isUserMessage, // True if the current user sent it
+          };
+  
+          setMessagesByUser((prev) => ({
+              ...prev,
+              [userId]: [...(prev[userId] || []), newMessage], // Append the new message
+          }));
+      } catch (error) {
+          console.error("Error saving message:", error);
+      }
+  };
+  
     
 
     const ContentArea = ({ connections, messagesByUser, selectedUser, addMessage }) => {
