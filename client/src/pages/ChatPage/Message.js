@@ -33,73 +33,89 @@ export default function ChatApp() {
       fetchConnections()
     }, [userId])
   
-    const addMessage = async (text, isUserMessage, userId) => {
+    const fetchMessages = async (userId) => {
       try {
-          await axios.post('http://localhost:8000/messages/saveMessage', {
-              senderId: cookies.UserId,
-              receiverId: userId,
-              content: text,
+          const response = await axios.get('http://localhost:8000/messages/getMessages', {
+              params: { userId1: cookies.UserId, userId2: userId },
           });
+          console.log("Fetched messages from API:", response.data); // Log API response
+  
           setMessagesByUser((prev) => ({
               ...prev,
-              [userId]: [...(prev[userId] || []), { text, isUserMessage }],
+              [userId]: response.data,
           }));
       } catch (error) {
-          console.error("Error saving message:", error);
+          console.error('Error fetching messages:', error);
       }
+  };  
+    
+    // Update the sidebar to fetch messages when a user is selected
+    const Sidebar = ({ connections, selectedUser, setSelectedUser }) => {
+        const handleUserClick = (userId) => {
+            setSelectedUser(userId);
+            fetchMessages(userId); // Fetch messages for the selected user
+        };
+    
+        return (
+            <div className="userlist">
+                {connections.map((connection) => {
+                    const isSelected = selectedUser === connection.userID;
+                    return (
+                        <div
+                            key={connection.userID}
+                            className={isSelected ? 'selectedUser' : 'user'}
+                            onClick={() => handleUserClick(connection.userID)}
+                        >
+                            {`${connection.firstName} ${connection.lastName}` || 'Unnamed User'}
+                        </div>
+                    );
+                })}
+            </div>
+        );
+    };
+    
+    // Add messages to the database and update state
+    const addMessage = async (text, isUserMessage, userId) => {
+        try {
+            const response = await axios.post('http://localhost:8000/messages/saveMessage', {
+                senderId: cookies.UserId,
+                receiverId: userId,
+                content: text,
+            });
+    
+            const newMessage = { text, isUserMessage };
+            setMessagesByUser((prev) => ({
+                ...prev,
+                [userId]: [...(prev[userId] || []), newMessage],
+            }));
+        } catch (error) {
+            console.error('Error saving message:', error);
+        }
+    };
+    
+
+    const ContentArea = ({ connections, messagesByUser, selectedUser, addMessage }) => {
+      const messages = messagesByUser[selectedUser] || [];
+  
+      return (
+          <div className="contentArea">
+              <div className="chatHeader">
+                  <h2>{connections.find(conn => conn.userID === selectedUser)?.firstName || 'Chat'}</h2>
+              </div>
+              <div className="messageList">
+                  {messages.map((message, index) => (
+                      <div key={index} className={`message ${message.isUserMessage ? 'userMessage' : 'botMessage'}`}>
+                          {message.content || "No content available"} {/* Display actual message content */}
+                      </div>
+                  ))}
+              </div>
+              <div className="footer">
+                  <MessageInput addMessage={(text, isUserMessage) => addMessage(text, isUserMessage, selectedUser)} />
+              </div>
+          </div>
+      );
   };
   
-//pass through our connections that we fetched so we can display on the sidebar
-  const Sidebar = ({ connections, selectedUser, setSelectedUser }) => {
-    return (
-      <div className="userlist">
-        {/* map our connection and current user */}
-        {connections.map((connection) => {
-          const isSelected = selectedUser === connection.userID; 
-          return (
-            /* populate sidebar with connected user info */
-            <div
-              key={connection.userID}  
-              className={isSelected ? 'selectedUser' : 'user'}
-              onClick={() => setSelectedUser(connection.userID)} 
-            >
-              {`${connection.firstName} ${connection.lastName}` || 'Unnamed User'} 
-            </div>
-          );
-        })}
-      </div>
-    );
-  };
-
-  const ContentArea = ({ connections, messagesByUser, selectedUser, addMessage }) => {
-    const messages = messagesByUser[selectedUser] || [];
-
-    //adding header when clicking on users on sidebar
-    const selecteduserInfo = connections.find(connection => connection.userID === selectedUser)
-    const selecteduserName = selecteduserInfo ? `${selecteduserInfo.firstName} ${selecteduserInfo.lastName}` : ' '
-
-    return (
-      <div className="contentArea">
-        {/* added class header that can be styled */}
-        <div className = "chatHeader">
-          <h2>
-            {selecteduserName}
-          </h2>
-        </div>
-        <div className="messageList">
-          {messages.map((message, index) => (
-            <div key={index} className={`message ${message.isUserMessage ? 'userMessage' : 'botMessage'}`}>
-              {message.text}
-            </div>
-          ))}
-        </div>
-        <div className="footer">
-          <MessageInput addMessage={(text, isUserMessage) => addMessage(text, isUserMessage, selectedUser)} />
-        </div>
-        <button onClick={handleSwipe} className="swipe-button">Back to Swipe Page</button>
-      </div>
-    );
-  };
 
   return (
     <div className="container">
