@@ -11,6 +11,7 @@ const matchingRoute = require('./routes/matchingRoute')
 const swipeRoute = require('./routes/swipeRoute')
 const prefRoute = require('./routes/preferenceRoute')
 const connectionRoute = require('./routes/connectionRoute')
+const uploadRoute = require('./routes/uploadRoutes')
 //temp uri link, will convert to hidden with env later
 const uri = process.env.URI
  
@@ -25,6 +26,8 @@ app.use('/matching', matchingRoute)
 app.use('/swipe', swipeRoute)
 app.use('/preferences', prefRoute);
 app.use('/connections', connectionRoute)
+app.use('/uploads', express.static('uploads'));
+app.use(uploadRoute);
 
 //connect to mongoDB collection
 const connectToDB = async () => {
