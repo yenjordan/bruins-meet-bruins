@@ -80,7 +80,7 @@ export default function ChatApp() {
     };
     
     // Add messages to the database and update state
-    const addMessage = async (text, isUserMessage, userId) => {
+    const addMessage = async (text, _, userId) => {
       if (!text.trim()) {
           console.error("Cannot send an empty message.");
           return;
@@ -91,13 +91,16 @@ export default function ChatApp() {
           const response = await axios.post('http://localhost:8000/messages/saveMessage', {
               senderId: cookies.UserId,
               receiverId: userId,
-              content: text, // The actual message content
+              content: text,
           });
   
-          // Update local state with the saved message
+          // Add the message to the local state with `isUserMessage: true`
           const newMessage = {
-              content: text, // Ensure this is the correct field
-              isUserMessage, // True if the current user sent it
+              content: text,
+              senderId: cookies.UserId, // The current user is the sender
+              receiverId: userId,
+              isUserMessage: true, // Explicitly set to true for the logged-in user
+              timestamp: new Date(), // Add a timestamp for ordering
           };
   
           setMessagesByUser((prev) => ({
@@ -108,8 +111,6 @@ export default function ChatApp() {
           console.error("Error saving message:", error);
       }
   };
-  
-    
 
     const ContentArea = ({ connections, messagesByUser, selectedUser, addMessage }) => {
       const messages = messagesByUser[selectedUser] || [];
