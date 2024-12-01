@@ -11,6 +11,7 @@ const matchingRoute = require('./routes/matchingRoute')
 const swipeRoute = require('./routes/swipeRoute')
 const prefRoute = require('./routes/preferenceRoute')
 const connectionRoute = require('./routes/connectionRoute')
+const messageRoute = require('./routes/messageRoute');
 //temp uri link, will convert to hidden with env later
 const uri = process.env.URI
  
@@ -25,6 +26,7 @@ app.use('/matching', matchingRoute)
 app.use('/swipe', swipeRoute)
 app.use('/preferences', prefRoute);
 app.use('/connections', connectionRoute)
+app.use('/messages', messageRoute)
 
 //connect to mongoDB collection
 const connectToDB = async () => {
@@ -61,4 +63,4 @@ app.get("/users", async (req, res) => {
     }
 })
 
-app.listen(PORT, () => console.log('Server is runing on: ' + PORT))
+app.listen(PORT, () => console.log('Server is running on: ' + PORT))

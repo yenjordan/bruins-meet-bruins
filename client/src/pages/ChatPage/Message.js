@@ -33,12 +33,22 @@ export default function ChatApp() {
       fetchConnections()
     }, [userId])
   
-  const addMessage = (text, isUserMessage, userId) => {
-    setMessagesByUser((prev) => ({
-      ...prev,
-      [userId]: [...(prev[userId] || []), { text, isUserMessage }],
-    }));
+    const addMessage = async (text, isUserMessage, userId) => {
+      try {
+          await axios.post('http://localhost:8000/messages/saveMessage', {
+              senderId: cookies.UserId,
+              receiverId: userId,
+              content: text,
+          });
+          setMessagesByUser((prev) => ({
+              ...prev,
+              [userId]: [...(prev[userId] || []), { text, isUserMessage }],
+          }));
+      } catch (error) {
+          console.error("Error saving message:", error);
+      }
   };
+  
 //pass through our connections that we fetched so we can display on the sidebar
   const Sidebar = ({ connections, selectedUser, setSelectedUser }) => {
     return (
