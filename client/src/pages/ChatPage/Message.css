@@ -49,12 +49,12 @@
   max-width: 500px;
 }
 .userMessage {
-  background-color: lightblue; /* Example color for user messages */
-  align-self: flex-end; /* Align messages sent by the user to the right */
+  background-color: lightblue; 
+  align-self: flex-end;
 }
 .botMessage {
-  background-color: #e6e6e6; /* Example color for bot messages */
-  align-self: flex-start; /* Align messages received from others to the left */
+  background-color: #e6e6e6; 
+  align-self: flex-start;
 }
 .swipe-button {
   position: fixed;

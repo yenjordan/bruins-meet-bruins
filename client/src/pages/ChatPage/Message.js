@@ -41,7 +41,7 @@ export default function ChatApp() {
   
           const messages = response.data.map((message) => ({
               ...message,
-              isUserMessage: message.senderId === cookies.UserId, // Determine if the current user sent the message
+              isUserMessage: message.senderId === cookies.UserId, // determine if the current user sent the message
           }));
   
           setMessagesByUser((prev) => ({
@@ -54,11 +54,11 @@ export default function ChatApp() {
   };
   
     
-    // Update the sidebar to fetch messages when a user is selected
+    // update the sidebar to fetch messages when a user is selected
     const Sidebar = ({ connections, selectedUser, setSelectedUser }) => {
         const handleUserClick = (userId) => {
             setSelectedUser(userId);
-            fetchMessages(userId); // Fetch messages for the selected user
+            fetchMessages(userId); // fetch messages for the selected user
         };
     
         return (
@@ -79,7 +79,7 @@ export default function ChatApp() {
         );
     };
     
-    // Add messages to the database and update state
+    // add messages to the database and update state
     const addMessage = async (text, _, userId) => {
       if (!text.trim()) {
           console.error("Cannot send an empty message.");
@@ -87,25 +87,24 @@ export default function ChatApp() {
       }
   
       try {
-          // Save the message to the database
+          // save the message to the database
           const response = await axios.post('http://localhost:8000/messages/saveMessage', {
               senderId: cookies.UserId,
               receiverId: userId,
               content: text,
           });
   
-          // Add the message to the local state with `isUserMessage: true`
           const newMessage = {
               content: text,
-              senderId: cookies.UserId, // The current user is the sender
+              senderId: cookies.UserId,
               receiverId: userId,
-              isUserMessage: true, // Explicitly set to true for the logged-in user
-              timestamp: new Date(), // Add a timestamp for ordering
+              isUserMessage: true,
+              timestamp: new Date(),
           };
   
           setMessagesByUser((prev) => ({
               ...prev,
-              [userId]: [...(prev[userId] || []), newMessage], // Append the new message
+              [userId]: [...(prev[userId] || []), newMessage],
           }));
       } catch (error) {
           console.error("Error saving message:", error);
@@ -119,7 +118,6 @@ export default function ChatApp() {
         <div className="contentArea">
           <div className="chatHeader">
             <h2>{connections.find((conn) => conn.userID === selectedUser)?.firstName || 'Chat'}</h2>
-            {/* Add Back to Swipe Page Button */}
             <button onClick={handleSwipe} className="swipe-button">
               Back to Swipe Page
             </button>
@@ -127,7 +125,7 @@ export default function ChatApp() {
           <div className="messageList">
             {messages.map((message, index) => (
               <div key={index} className={`message ${message.isUserMessage ? 'userMessage' : 'botMessage'}`}>
-                {message.content || 'No content available'} {/* Display actual message content */}
+                {message.content || 'No content available'}
               </div>
             ))}
           </div>
