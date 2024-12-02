@@ -12,19 +12,61 @@
 .user {
   height: 30px;
   padding: 20px;
-  border: 0.5px solid #ccc;
+  border: 0.5px solid lightblue;
 }
 .selectedUser {
-  height: 30px;
-  padding: 20px;
-  border: 0.5px solid #ccc;
-  background-color: lightblue;
-  background: linear-gradient(-45deg, #A8DADC, #457B9D, #F9D56E, #FAEDCD);
+  height: 50px;
+  padding: 10px 15px;
+  margin-bottom: 10px; /* Add spacing between users */
+  border: 0.5px solid lightblue;
+  background: black; /* Background for text gradient */
   background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: gradientBG 13s ease infinite;
+  animation: gradientBG 13s ease infinite; /* Infinite gradient animation */
+  font-weight: bold;
+  text-align: center; /* Center text */
+  display: flex; /* Align items horizontally */
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative; /* Required for the pseudo-element */
+  overflow: hidden; /* Prevent overflow */
+  transition: color 0.3s ease; /* Smooth text color transition */
 }
+
+.selectedUser::before {
+  content: ''; /* Empty content for the pseudo-element */
+  position: absolute;
+  top: 0;
+  left: -100%; /* Start off-screen */
+  width: 200%; /* Extend width for smooth animation */
+  height: 100%;
+  background: linear-gradient(90deg, #A8DADC, #457B9D, #F9D56E, #FAEDCD);
+  z-index: -1; /* Place behind text */
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.3s ease; /* Smooth opacity transition */
+}
+
+.selectedUser:hover::before {
+  opacity: 1; /* Show pseudo-element on hover */
+  animation: gradientSmooth 2s cubic-bezier(0.4, 0.0, 0.2, 1) forwards; /* Smooth animation */
+}
+
+.selectedUser:hover {
+  color: black; /* Ensure text remains visible */
+}
+
+@keyframes gradientSmooth {
+  0% {
+    left: -100%; /* Start off-screen */
+  }
+  100% {
+    left: 100%; /* Move off-screen on the other side */
+  }
+}
+
+
 .contentArea {
   flex-grow: 1;
   display: flex;
@@ -54,7 +96,7 @@
   max-width: 500px;
 }
 .userMessage {
-  background-color: lightblue; 
+  background-color: lightblue; /* Example blue color */
   align-self: flex-end;
 }
 .botMessage {
@@ -88,14 +130,56 @@
   animation: gradientBG 13s ease infinite;
 }
 .user {
-  text-align: center;
+  height: 30px;
+  padding: 20px;
+  border: 1px solid lightblue; /* Light blue border */
   background: black;
   background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: gradientBG 13s ease infinite;
   font-weight: bold;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* For pseudo-element positioning */
+  overflow: hidden; /* Ensure pseudo-element doesn't overflow */
+  cursor: pointer; /* Pointer cursor for interaction */
+  transition: color 0.3s ease; /* Smooth color transition */
 }
+
+.user::before {
+  content: ''; /* Empty content for animation */
+  position: absolute;
+  top: 0;
+  left: -100%; /* Start off-screen */
+  width: 200%; /* Extend width for smooth animation */
+  height: 100%;
+  background: linear-gradient(90deg, #A8DADC, #457B9D, #F9D56E, #FAEDCD);
+  z-index: -1; /* Place behind text */
+  opacity: 0; /* Invisible by default */
+  transition: opacity 0.3s ease; /* Smooth opacity transition */
+}
+
+.user:hover::before {
+  opacity: 1; /* Show on hover */
+  animation: gradientSmooth 2s cubic-bezier(0.4, 0.0, 0.2, 1) forwards; /* Smooth animation */
+}
+
+.user:hover {
+  color: black; /* Ensure text remains visible */
+}
+
+@keyframes gradientSmooth {
+  0% {
+    left: -100%; /* Start off-screen */
+  }
+  100% {
+    left: 100%; /* End off-screen */
+  }
+}
+
 .footer {
   padding: 20px;
   text-align: left;
@@ -106,4 +190,18 @@
   -webkit-background-clip: text; /* Clip gradient to text */
   -webkit-text-fill-color: transparent; /* Ensure gradient is visible */
   animation: gradientBG 13s ease infinite; /* Add animation for dynamic gradient */
+}
+.textInput {
+  background-color: #A8DADC; /* Match the user message background */
+  color: #000; /* Black text */
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 100px;
+  border: 1px solid #ccc;
+  outline: none;
+  width: 90%;
+  transition: box-shadow 0.3s ease-in-out;
+}
+.textInput:focus {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); /* Subtle glow on focus */
 }
