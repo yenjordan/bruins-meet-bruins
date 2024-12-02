@@ -9,9 +9,24 @@ const PreferencePage = () => {
   const [ageRange, setAgeRange] = useState([18, 100]);
   const [newHobby, setNewHobby] = useState('');
   const [hobbies, setHobbies] = useState([]);
-  const [cookies] = useCookies(['UserId'])
+  const [cookies, removeCookie] = useCookies(['UserId'])
   const userId = cookies.UserId
   const navigate = useNavigate()
+
+const handleSignout = () => {
+    removeCookie('UserId')
+    removeCookie('LoginToken')
+    localStorage.removeItem('token'); //remove login token we generated
+    navigate('/')
+}
+
+const handleChat = () => {
+    navigate('/Message')
+}
+
+const handleSwipePage = () => {
+    navigate('/SwipePage')
+}
 
   const handleAgeChange = (e) => {
     const { name, value } = e.target;
@@ -123,7 +138,10 @@ const PreferencePage = () => {
           </ul>
         </div>
 
-        <button className="preferencesButton" ype="submit">Save Preferences</button>
+        <button className="preferencesButton" type="submit">Save Preferences</button>
+        <button type= 'button' onClick={handleSignout} className="signout-button">Sign Out</button>
+        <button type= 'button' onClick={handleChat} className="chat-button">Go To Chat Page</button>
+        <button type= 'button' onClick={handleSwipePage} className="preference-button">Go To Swipe Page</button>
       </form>
     </div>
   );
