@@ -27,8 +27,8 @@ const signup = async (req, res) => {
         const newUser = new User({ userId, email: convertemail, hashedPass })
         await newUser.save()
         
-        // const newProfile = new userProfile({ firstName: " ", lastName: " ", age: -1, bio: " " , img: " ", userID: userId })
-        const newProfile = new userProfile({ firstName: " ", lastName: " ", age: -1, bio: " " , userID: userId })
+        const newProfile = new userProfile({ firstName: " ", lastName: " ", age: -1, bio: " " , img: " ", userID: userId })
+        // const newProfile = new userProfile({ firstName: " ", lastName: " ", age: -1, bio: " " , userID: userId })
         await newProfile.save()
         //assocate userId with other collections
         const newPreference = new userPreferences({userId: userId})

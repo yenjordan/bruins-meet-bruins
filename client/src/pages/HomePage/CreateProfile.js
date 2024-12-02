@@ -1,7 +1,6 @@
 import {useState} from 'react';
 import './CreateProfile.css'
 import { useNavigate } from 'react-router-dom';
-
 export default function Profile() {
     const[fName, setfName] = useState('');
     const[lName, setlName] = useState('');
@@ -10,7 +9,8 @@ export default function Profile() {
     const[error, setError] = useState('')
     const[successMessage, setSuccessMessage] = useState('')
     const [img, setImg] = useState(null);
-    const navigate = useNavigate();
+
+    const navigate = useNavigate()
 
     const handleFileChange = (e) => {
         const file = e.target.files[0]
@@ -72,8 +72,8 @@ export default function Profile() {
                 setAboutMe('');
                 setAge('');
                 setImg(null);
-
                 navigate('/PreferencesPage')
+                
             }else{
                 setError(result.message || 'Failed to create profile');
             }
