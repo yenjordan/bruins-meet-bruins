@@ -11,8 +11,8 @@
 .form-field{
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
-    
+    margin-bottom: 20px;  
+      
 }
 .form-field label{
     width: 80px;
@@ -27,20 +27,34 @@
     font-family: 'text';
 }
 
-button{
+.profileButton{
     padding: 8px 12px;
+    margin-left: 5px;
     cursor: pointer;
     background-color: #daa520;
     font-family: 'text';
     border-radius: 8px;
+    border: none;
+    background: linear-gradient(-45deg, #FAEDCD, #F9D56E, #457B9D, #A8DADC);
+    background-size: 400% 400%;
+    animation: gradientBG 13s ease infinite;
+    color: transparent;
+    font-weight: bold;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
 }
 
-button:hover{
-    padding: 8px 12px;
-    cursor: pointer;
-    background-color: #B9D9EB; 
-    font-family: 'text';
-    border-radius: 8px;
+.profileButton:hover{
+    background-color: #FAEDCD;
+    color: white;
+    background-clip: unset;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: white;
 }
 
 .error

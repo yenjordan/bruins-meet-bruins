@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import './CreateProfile.css'
+import './Landing.css'
 import { useNavigate } from 'react-router-dom';
 export default function Profile() {
     const[fName, setfName] = useState('');
@@ -84,12 +85,22 @@ export default function Profile() {
 
     };
 
+    const handleCustomButtonClick = () =>{
+        document.getElementById('file-input').click();
+    };
 
     return (
         
         <form onSubmit={handleSubmit} className='form-container'>
-            
+            <img src="/logob.png" alt="logo" style={{ width: '170px', height: '200px' }}/>
             <h1>Create your Profile</h1>
+            <div className='form-field'>
+                <label htmlFor="img">Profile Picture</label>
+                <input type='file' id='file-input' onChange={handleFileChange} style={{ display:'none'}}/>
+                <button type='button' className='profileButton' onClick={handleCustomButtonClick}>Upload Profile Picture</button>
+
+            </div>
+
             <div className='form-field'>
                 <label htmlFor="name">First Name</label>
                 <input value={fName} onChange={(e) => setfName(e.target.value)} placeholder='Joe / Josie' id='firstName' />
@@ -106,14 +117,9 @@ export default function Profile() {
                 <label htmlFor="aboutMe">About Me</label>
                 <input value={aboutMe} onChange={(e) => setAboutMe(e.target.value)} placeholder='Go Bruins!' id='aboutMe' />
             </div>
-            <div className='form-field'>
-                <label htmlFor="img">Profile Picture</label>
-                <input type='file' onChange={handleFileChange} id='img'/>
-
-            </div>
             {error && <div className="error">{error}</div>}
             {successMessage && <div className='successMessage'>{successMessage}</div>}
-            <button type="submit">Create Profile</button>
+            <button type="submit" className='profileButton'>Create Profile</button>
             
         </form>
 
