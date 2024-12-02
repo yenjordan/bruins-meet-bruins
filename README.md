@@ -85,14 +85,14 @@ Replace < yourkey > with any string key/password you desire, making sure you kee
 
 This project was boostrapped with the MERN stack: MongoDB, Express.js, React.js, and Node.js.
 
-We utilized React for our frontend interface, Express for our middleware to create POST and GET routes/requests on a Node.js server to MongoDB for our backend and databases.
+We utilized React for our frontend interface, Express for our middleware to create POST and GET routes/requests on a Node.js server, sending requests from our client to server and also server to client
 
 ## Creators/Contributers
 Larry Lim
 
 Julia Lou
 
-Marc Anthony Trujilo
+Marc Anthony Trujillo
 
 Htet Min Khant
 
