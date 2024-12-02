@@ -23,7 +23,13 @@ const profileSchema = new mongoose.Schema({
     userID: {
         type: String,
         required: true
-    }
+    },
+
+    img: {
+        type: String,  
+        required: false
+    },
+
 }, {timestamps: true});
 
 const Profile = mongoose.model("Profile", profileSchema);

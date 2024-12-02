@@ -12,6 +12,7 @@ const swipeRoute = require('./routes/swipeRoute')
 const prefRoute = require('./routes/preferenceRoute')
 const connectionRoute = require('./routes/connectionRoute')
 const messageRoute = require('./routes/messageRoute');
+const uploadRoute = require('./routes/uploadRoutes')
 //temp uri link, will convert to hidden with env later
 const uri = process.env.URI
  
@@ -27,6 +28,8 @@ app.use('/swipe', swipeRoute)
 app.use('/preferences', prefRoute);
 app.use('/connections', connectionRoute)
 app.use('/messages', messageRoute)
+app.use('/uploads', express.static('uploads'));
+app.use(uploadRoute);
 
 //connect to mongoDB collection
 const connectToDB = async () => {
