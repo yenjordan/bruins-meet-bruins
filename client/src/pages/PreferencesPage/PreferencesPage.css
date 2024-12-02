@@ -34,14 +34,13 @@ body {
 
 /* Heading Styles */
 .preference-page h1 {
-  font-size: 2.5rem;
-  margin-bottom: 30px;
-  color: #333;
-  background: linear-gradient(-45deg, #FAEDCD, #F9D56E, #457B9D, #A8DADC);
+  text-align: center;
+  background: #333;
   background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: gradientBG 13s ease infinite;
+  font-weight: bold;
 }
 
 /* Form Styles */
@@ -192,4 +191,16 @@ body {
   .hobby-input {
     flex-direction: column;
   }
+}
+.preferencesButton {
+  background: linear-gradient(-45deg, #FAEDCD, #F9D56E, #457B9D, #A8DADC);
+  background-size: 400% 400%;
+  animation: gradientBG 13s ease infinite;
+}
+.preferencesButton:hover {
+  background-color: #FAEDCD;
+  color: white;
+  background-clip: unset;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: black;
 }
