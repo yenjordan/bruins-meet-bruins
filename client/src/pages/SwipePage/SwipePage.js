@@ -110,8 +110,8 @@ const SwipePage = () => {
     if (currentIndex >= profiles.length) {  //if no more profiles, then stop displaying cards
         return (
             <div>
-                <p>No more profiles available at the moment. Please check back later.</p>
-                <button onClick={() => setLoading(true)}>Refresh</button>
+                <p className="no-more-profiles">No more profiles available at the moment. Please check back later.</p>
+                <button onClick={() => setLoading(true)} className="refresh-button">Refresh</button>
                 <button onClick={handleSignout} className="signout-button">Sign Out</button>
                 <button onClick={handleChat} className="chat-button">Go To Chat Page</button>
                 <button onClick={handlePref} className="preference-button">Change Preferences</button>

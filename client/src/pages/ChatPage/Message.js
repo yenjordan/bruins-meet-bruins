@@ -117,7 +117,7 @@ export default function ChatApp() {
       return (
         <div className="contentArea">
           <div className="chatHeader">
-            <h2>{connections.find((conn) => conn.userID === selectedUser)?.firstName || 'Chat'}</h2>
+            <h2 className="chat-text">{connections.find((conn) => conn.userID === selectedUser)?.firstName || 'Chat'}</h2>
             <button onClick={handleSwipe} className="swipe-button">
               Back to Swipe Page
             </button>

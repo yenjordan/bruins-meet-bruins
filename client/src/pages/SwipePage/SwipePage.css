@@ -81,6 +81,17 @@
   top: 10px;
   left: 10px;
   padding: 10px;
+  background: linear-gradient(-45deg, #FAEDCD, #F9D56E, #457B9D, #A8DADC);
+  background-size: 400% 400%;
+  animation: gradientBG 13s ease infinite;
+}
+
+.signout-button:hover {
+  background-color: #FAEDCD;
+  color: white;
+  background-clip: unset;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: black;
 }
 
 .chat-button {
@@ -88,6 +99,17 @@
   top: 10px;
   right: 10px;
   padding: 10px;
+  background: linear-gradient(-45deg, #FAEDCD, #F9D56E, #457B9D, #A8DADC);
+  background-size: 400% 400%;
+  animation: gradientBG 13s ease infinite;
+}
+
+.chat-button:hover {
+  background-color: #FAEDCD;
+  color: white;
+  background-clip: unset;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: black;
 }
 
 .preference-button {
@@ -95,4 +117,41 @@
   top: 60px;
   left: 10px;
   padding: 10px;
+  background: linear-gradient(-45deg, #FAEDCD, #F9D56E, #457B9D, #A8DADC);
+  background-size: 400% 400%;
+  animation: gradientBG 13s ease infinite;
+}
+
+.preference-button:hover {
+  background-color: #FAEDCD;
+  color: white;
+  background-clip: unset;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: black;
+}
+
+.refresh-button {
+  position: fixed;
+  text-align: center;
+  background: linear-gradient(-45deg, #FAEDCD, #F9D56E, #457B9D, #A8DADC);
+  background-size: 400% 400%;
+  animation: gradientBG 13s ease infinite;
+}
+
+.refresh-button:hover {
+  background-color: #FAEDCD;
+  color: white;
+  background-clip: unset;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: black;
+}
+
+.no-more-profiles {
+  text-align: center;
+  background: black;
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientBG 13s ease infinite;
+  font-weight: bold;
 }
