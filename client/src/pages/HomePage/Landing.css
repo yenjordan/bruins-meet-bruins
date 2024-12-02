@@ -42,7 +42,7 @@ h1, h2 {
   font-size: 18px;
   border-radius: 10px;
   border: none;
-  background: linear-gradient(-45deg, #A8DADC, #457B9D, #F9D56E, #FAEDCD);
+  background: linear-gradient(-45deg, #FAEDCD, #F9D56E, #457B9D, #A8DADC);
   background-size: 400% 400%;
   animation: gradientBG 13s ease infinite;
   color: transparent;
@@ -56,8 +56,7 @@ h1, h2 {
 }
 
 .mainButton:hover {
-  transform: scale(1.05);
-  background: linear-gradient(45deg, #FAEDCD, #F9D56E);
+  background-color: #FAEDCD;
   color: white;
   background-clip: unset;
   -webkit-background-clip: unset;
@@ -85,7 +84,7 @@ h1, h2 {
   padding: 3px;
   font-size: 15px;
   border-radius: 8px;
-  background: linear-gradient(-45deg, #A8DADC, #457B9D, #F9D56E, #FAEDCD);
+  background: linear-gradient(-45deg, #FAEDCD, #F9D56E, #457B9D, #A8DADC);
   background-size: 400% 400%;
   animation: gradientBG 13s ease infinite;
   color: transparent;
@@ -117,6 +116,9 @@ h1, h2 {
   border-style: solid;
   border-width: 1px;
   border-color: #457B9D;
+  background: linear-gradient(-45deg, #A8DADC, #457B9D, #F9D56E, #FAEDCD);
+  background-size: 400% 400%;
+  animation: gradientBG 12.5s ease infinite;
 }
 
 .auth_Ui input[type=password],
@@ -138,6 +140,9 @@ h1, h2 {
   font-size: 16px;
   background-color: #A8DADC;
   font-family: 'text';
+  background: linear-gradient(-45deg, #FAEDCD, #F9D56E, #457B9D, #A8DADC);
+  background-size: 400% 400%;
+  animation: gradientBG 13s ease infinite;
 }
 
 .closeButton:hover {

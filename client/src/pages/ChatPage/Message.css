@@ -19,6 +19,11 @@
   padding: 20px;
   border: 0.5px solid #ccc;
   background-color: lightblue;
+  background: linear-gradient(-45deg, #A8DADC, #457B9D, #F9D56E, #FAEDCD);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientBG 13s ease infinite;
 }
 .contentArea {
   flex-grow: 1;
@@ -61,4 +66,44 @@
   top: 10px;
   right: 10px;
   padding: 10px;
+  background: linear-gradient(-45deg, #FAEDCD, #F9D56E, #457B9D, #A8DADC);
+  background-size: 400% 400%;
+  animation: gradientBG 13s ease infinite;
+}
+.chat-text {
+  text-align: center;
+  background: black;
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientBG 13s ease infinite;
+  font-weight: bold;
+}
+.userlist {
+  text-align: center;
+  background: linear-gradient(-45deg, #A8DADC, #457B9D, #F9D56E, #FAEDCD);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientBG 13s ease infinite;
+}
+.user {
+  text-align: center;
+  background: black;
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientBG 13s ease infinite;
+  font-weight: bold;
+}
+.footer {
+  padding: 20px;
+  text-align: left;
+  background-color: #ececec;
+  color: transparent; /* Make text transparent */
+  background: linear-gradient(-45deg, #FAEDCD, #F9D56E, #457B9D, #A8DADC); /* Apply gradient */
+  background-size: 400% 400%;
+  -webkit-background-clip: text; /* Clip gradient to text */
+  -webkit-text-fill-color: transparent; /* Ensure gradient is visible */
+  animation: gradientBG 13s ease infinite; /* Add animation for dynamic gradient */
 }

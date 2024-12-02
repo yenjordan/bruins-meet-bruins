@@ -1,129 +1,195 @@
-/* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* General Styles */
+body {
+  background: linear-gradient(-45deg, #A8DADC, #457B9D, #F9D56E, #FAEDCD);
+  background-size: 400% 400%;
+  animation: gradientBG 13s ease infinite;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  text-align: center;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
   }
-  
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  50% {
+    background-position: 100% 50%;
   }
-  
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Preference Page Container */
+.preference-page {
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+  padding: 40px;
+  margin: 50px auto;
+  border-radius: 20px;
+  max-width: 600px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading Styles */
+.preference-page h1 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #333;
+  background: linear-gradient(-45deg, #FAEDCD, #F9D56E, #457B9D, #A8DADC);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientBG 13s ease infinite;
+}
+
+/* Form Styles */
+.preference-page form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Age Range Section */
+.age-range {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.age-range label {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.age-range-inputs {
+  display: flex;
+  gap: 20px;
+}
+
+.age-range-inputs input {
+  width: 100px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.age-range-inputs span {
+  align-self: center;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+/* Hobbies Section */
+.hobbies {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hobbies label {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.hobby-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.hobby-input input {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  flex-grow: 1;
+}
+
+.hobby-input button {
+  padding: 10px 20px;
+  background-color: #FFD166;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.hobby-input button:hover {
+  background-color: #FAA307;
+}
+
+/* Hobby List */
+.hobby-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hobby-item {
+  background-color: #F4F4F4;
+  padding: 8px 12px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hobby-item button {
+  background-color: transparent;
+  color: #EF476F;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.hobby-item button:hover {
+  color: #D90429;
+}
+
+/* Submit Button */
+.preference-page button[type="submit"] {
+  padding: 15px;
+  background-color: #06D6A0;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.preference-page button[type="submit"]:hover {
+  background-color: #04A683;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .preference-page {
-    background-color: #fff;
     padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 30px auto;
+  }
+
+  .age-range-inputs {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .age-range-inputs input {
     width: 100%;
-    max-width: 500px;
   }
-  
-  h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-  }
-  
-  form {
-    display: flex;
+
+  .hobby-input {
     flex-direction: column;
   }
-  
-  .age-range,
-  .hobbies {
-    margin-bottom: 20px;
-  }
-  
-  .age-range label,
-  .hobbies label {
-    font-weight: bold;
-    margin-bottom: 8px;
-  }
-  
-  .age-range-inputs {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-  }
-  
-  .age-range-inputs input {
-    width: 45%;
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-  }
-  
-  .hobby-input {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .hobby-input input {
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    flex-grow: 1;
-  }
-  
-  .hobby-input button {
-    padding: 8px 12px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .hobby-input button:hover {
-    background-color: #0056b3;
-  }
-  
-  .hobby-list {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .hobby-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f4f4f4;
-    margin: 5px 0;
-    padding: 8px;
-    border-radius: 4px;
-  }
-  
-  .hobby-item button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 4px 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .hobby-item button:hover {
-    background-color: #0056b3;
-  }
-  
-  button[type="submit"] {
-    padding: 12px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  button[type="submit"]:hover {
-    background-color: #218838;
-  }
-   */
+}

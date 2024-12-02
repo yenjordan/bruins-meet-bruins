@@ -77,10 +77,10 @@ const PreferencePage = () => {
 
   return (
     <div className="preference-page">
-      <h1>Your Preferences</h1>
+      <h1 className="yourPreferences">Your Preferences</h1>
       <form onSubmit={handleSubmit}>
         <div className="age-range">
-          <label htmlFor="ageRange">Age Range</label>
+          <label className="ageRange "htmlFor="ageRange">Age Range</label>
           <div className="age-range-inputs">
             <input 
               type="number" 
@@ -90,7 +90,7 @@ const PreferencePage = () => {
               min="18" 
               max="100" 
             />
-            <span>to</span>
+            <span className="to">to</span>
             <input 
               type="number" 
               name="max" 
@@ -123,7 +123,7 @@ const PreferencePage = () => {
           </ul>
         </div>
 
-        <button type="submit">Save Preferences</button>
+        <button className="preferencesButton" ype="submit">Save Preferences</button>
       </form>
     </div>
   );
