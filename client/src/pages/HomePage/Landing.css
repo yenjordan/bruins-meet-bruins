@@ -25,12 +25,12 @@ body{
   font-size: 15px;
   border-radius: 8px;
   background-color: #daa520;
-  border: 2px solid lightskyblue;
   font-family: 'text';
 }
 .otherButton:hover {
-  background-color: goldenrod; 
+  font-family: 'text';
   color: white;
+  background-color: #B9D9EB; 
 }
 
 /*-- Authentication UI --*/
@@ -53,7 +53,6 @@ body{
   text-align: center;
   padding: 5px;
   margin: 8px;
-  font-size: 17px;
   border-radius: 8px;
 }
 
@@ -65,18 +64,21 @@ body{
   align-items: center;     
   justify-content: center;  
   font-size: 16px;          
-  background-color: #B9D9EB;
   font-family: 'text';
+  background-color: #daa520; 
 }
 
 .closeButton:hover {
+  border-radius: 50%;  
   background-color: #daa520; 
   color: white;
   font-family: 'text';
+  background-color: #B9D9EB;
 }
 
-.flex-container {
+.contact {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+  font-size: 14px;
 }
