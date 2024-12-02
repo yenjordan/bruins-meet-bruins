@@ -25,10 +25,10 @@ const profileSchema = new mongoose.Schema({
         required: true
     },
 
-    img:{
-        type: String,
-        required: true
-    }
+    img: {
+        type: String,  
+        required: false
+    },
 
 }, {timestamps: true});
 
