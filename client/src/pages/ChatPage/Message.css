@@ -49,12 +49,12 @@
   max-width: 500px;
 }
 .userMessage {
-  background-color: #e6e6e6;
-  align-self: flex-start;
+  background-color: lightblue; 
+  align-self: flex-end;
 }
 .botMessage {
-  background-color: lightblue;
-  align-self: flex-end;
+  background-color: #e6e6e6; 
+  align-self: flex-start;
 }
 .swipe-button {
   position: fixed;
