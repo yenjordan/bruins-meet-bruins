@@ -100,7 +100,7 @@ h1, h2 {
   color: white;
   background-clip: unset;
   -webkit-background-clip: unset;
-  -webkit-text-fill-color: white;
+  -webkit-text-fill-color: black;
 }
 
 /*-- Authentication UI --*/
