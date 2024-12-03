@@ -104,14 +104,55 @@
   align-self: flex-start;
 }
 .swipe-button {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  padding: 10px;
-  background: linear-gradient(-45deg, #FAEDCD, #F9D56E, #457B9D, #A8DADC);
+  position: absolute; /* Position it within the parent */
+  top: 10px; /* Space from the top */
+  right: 10px; /* Space from the right */
+  font-size: 16px; /* Adjust font size */
+  border: none; /* Remove border */
+  border-radius: 8px; /* Rounded corners */
+  background: black;
   background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   animation: gradientBG 13s ease infinite;
+  cursor: pointer; /* Indicate clickability */
+  font-weight: bold;
+  overflow: hidden; /* Prevent overflow */
 }
+
+
+.swipe-button::before {
+  content: ''; /* Empty content for the pseudo-element */
+  position: absolute;
+  top: 0;
+  left: -100%; /* Start off-screen */
+  width: 200%; /* Extend width for smooth animation */
+  height: 100%;
+  background: linear-gradient(90deg, #FAEDCD, #F9D56E, #457B9D, #A8DADC); /* Gradient for animation */
+  z-index: -1; /* Place behind text */
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.3s ease; /* Smooth opacity transition */
+}
+
+.swipe-button:hover::before {
+  opacity: 1; /* Show pseudo-element on hover */
+  animation: gradientSmooth 2s cubic-bezier(0.4, 0.0, 0.2, 1) forwards; /* Smooth animation */
+}
+
+.swipe-button:hover {
+  color: black; /* Ensure text color remains visible */
+  background-color: black; /* Optional: Change background on hover */
+}
+
+@keyframes gradientSmooth {
+  0% {
+    left: -100%; /* Start off-screen */
+  }
+  100% {
+    left: 100%; /* Move off-screen on the other side */
+  }
+}
+
 .chat-text {
   text-align: center;
   background: black;

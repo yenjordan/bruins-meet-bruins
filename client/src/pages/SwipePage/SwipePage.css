@@ -76,75 +76,81 @@
   }
 }
 
-.signout-button {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  padding: 10px;
-  background: linear-gradient(-45deg, #FAEDCD, #F9D56E, #457B9D, #A8DADC);
+/* Common styles for all buttons */
+.preference-button, .refresh-button, .signout-button, .chat-button {
+  position: absolute; /* Position each button absolutely within the parent */
+  font-size: 16px; /* Adjust font size */
+  border: none; /* Remove border for a clean look */
+  border-radius: 8px; /* Rounded corners */
+  background: black;
   background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   animation: gradientBG 13s ease infinite;
+  cursor: pointer; /* Indicate clickability */
+  font-weight: bold;
+  overflow: hidden; /* Prevent pseudo-element overflow */
+  transition: color 0.3s ease, background-color 0.3s ease; /* Smooth text and background transitions */
 }
 
-.signout-button:hover {
-  background-color: #FAEDCD;
-  color: white;
-  background-clip: unset;
-  -webkit-background-clip: unset;
-  -webkit-text-fill-color: black;
+/* Hover animation for buttons */
+.preference-button::before,
+.refresh-button::before,
+.signout-button::before,
+.chat-button::before {
+  content: ''; /* Empty content for the pseudo-element */
+  position: absolute;
+  top: 0;
+  left: -100%; /* Start off-screen */
+  width: 200%; /* Extend width for smooth animation */
+  height: 100%;
+  background: linear-gradient(90deg, #FAEDCD, #F9D56E, #457B9D, #A8DADC); /* Gradient for animation */
+  z-index: -1; /* Place behind text */
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.3s ease; /* Smooth opacity transition */
 }
 
-.chat-button {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  padding: 10px;
-  background: linear-gradient(-45deg, #FAEDCD, #F9D56E, #457B9D, #A8DADC);
-  background-size: 400% 400%;
-  animation: gradientBG 13s ease infinite;
+.preference-button:hover::before,
+.refresh-button:hover::before,
+.signout-button:hover::before,
+.chat-button:hover::before {
+  opacity: 1; /* Show pseudo-element on hover */
+  animation: gradientSmooth 2s cubic-bezier(0.4, 0.0, 0.2, 1) forwards; /* Smooth animation */
 }
 
+.preference-button:hover,
+.refresh-button:hover,
+.signout-button:hover,
 .chat-button:hover {
-  background-color: #FAEDCD;
-  color: white;
-  background-clip: unset;
-  -webkit-background-clip: unset;
-  -webkit-text-fill-color: black;
+  color: black; /* Ensure text color remains visible */
+  background-color: black;
+}
+
+/* Positioning for each button */
+.signout-button {
+  top: 10px;
+  left: 10px; /* Top-left corner */
 }
 
 .preference-button {
-  position: fixed;
-  top: 60px;
-  left: 10px;
-  padding: 10px;
-  background: linear-gradient(-45deg, #FAEDCD, #F9D56E, #457B9D, #A8DADC);
-  background-size: 400% 400%;
-  animation: gradientBG 13s ease infinite;
+  top: 60px; /* Positioned below the sign-out button */
+  left: 10px; /* Aligned to the left */
 }
 
-.preference-button:hover {
-  background-color: #FAEDCD;
-  color: white;
-  background-clip: unset;
-  -webkit-background-clip: unset;
-  -webkit-text-fill-color: black;
+.chat-button {
+  top: 10px;
+  right: 10px; /* Top-right corner */
 }
 
-.refresh-button {
-  position: fixed;
-  text-align: center;
-  background: linear-gradient(-45deg, #FAEDCD, #F9D56E, #457B9D, #A8DADC);
-  background-size: 400% 400%;
-  animation: gradientBG 13s ease infinite;
+@keyframes gradientSmooth {
+  0% {
+    left: -100%; /* Start off-screen */
+  }
+  100% {
+    left: 100%; /* Move off-screen on the other side */
+  }
 }
 
-.refresh-button:hover {
-  background-color: #FAEDCD;
-  color: white;
-  background-clip: unset;
-  -webkit-background-clip: unset;
-  -webkit-text-fill-color: black;
-}
 
 .no-more-profiles {
   text-align: center;
