@@ -56,11 +56,11 @@ h1, h2 {
 }
 
 .mainButton:hover {
-  background-color: #FAEDCD;
-  color: white;
+  background-color: black;
+  color: black;
   background-clip: unset;
   -webkit-background-clip: unset;
-  -webkit-text-fill-color: white;
+  -webkit-text-fill-color: black;
 }
 
 /* Animated gradient effect for text */
