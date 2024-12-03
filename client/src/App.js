@@ -1,6 +1,5 @@
 import Landing from './pages/HomePage/Landing';
 import Profile from './pages/HomePage/CreateProfile';
-import SearchPage from './pages/SearchPage/SearchPage';
 import ChatPage from './pages/ChatPage/Message';
 import SwipePage from './pages/SwipePage/SwipePage';
 import PreferencesPage from './pages/PreferencesPage/PreferencesPage'
@@ -17,7 +16,6 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/CreateProfile" element={<Profile />} />
-        <Route path="/SearchPage" elcdement={<SearchPage />} /> 
         <Route path="/Message" element={<ChatPage />} />
         <Route path="/SwipePage" element={<SwipePage />} />
         <Route path="/PreferencesPage" element={<PreferencesPage />} />
