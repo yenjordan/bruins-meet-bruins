@@ -16,12 +16,7 @@ export default function Profile() {
     const navigate = useNavigate()
     const userId = Cookies.userId
 
-    //handles if user that is not logged in attempts to navigate to one of the pages
-    useEffect(() => {
-    if (!userId || !localStorage.getItem('token')) {
-        navigate('/'); 
-    }
-    }, [userId, navigate]);
+
 
     const handleFileChange = (e) => {
         const file = e.target.files[0]
