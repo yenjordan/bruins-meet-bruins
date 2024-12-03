@@ -119,7 +119,7 @@ export default function Profile() {
             </div>
             {error && <div className="error">{error}</div>}
             {successMessage && <div className='successMessage'>{successMessage}</div>}
-            <button type="submit" className='profileButton'>Create Profile</button>
+            <button type="submit" className='createButton'>Create Profile</button>
             
         </form>
 
