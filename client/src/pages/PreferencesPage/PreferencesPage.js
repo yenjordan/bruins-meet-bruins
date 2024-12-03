@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './PreferencesPage.css';
 import { useNavigate } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
@@ -12,6 +12,13 @@ const PreferencePage = () => {
   const [cookies, removeCookie] = useCookies(['UserId'])
   const userId = cookies.UserId
   const navigate = useNavigate()
+
+  //handles if user that is not logged in attempts to navigate to one of the pages
+  useEffect(() => {
+    if (!userId || !localStorage.getItem('token')) {
+        navigate('/'); 
+    }
+  }, [userId, navigate]);
 
 const handleSignout = () => {
     removeCookie('UserId')

@@ -17,6 +17,13 @@ const SwipePage = () => {
     const userId = cookies.UserId
     const navigate = useNavigate()
    
+  //handles if user that is not logged in attempts to navigate to one of the pages
+    useEffect(() => {
+    if (!userId || !localStorage.getItem('token')) {
+        navigate('/'); 
+    }
+    }, [userId, navigate]);
+
     const handleSignout = () => {
         removeCookie('UserId')
         removeCookie('LoginToken')

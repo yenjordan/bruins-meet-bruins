@@ -1,7 +1,9 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import './CreateProfile.css'
 import './Landing.css'
 import { useNavigate } from 'react-router-dom';
+import { Cookies } from 'react-cookie';
+
 export default function Profile() {
     const[fName, setfName] = useState('');
     const[lName, setlName] = useState('');
@@ -12,6 +14,14 @@ export default function Profile() {
     const [img, setImg] = useState(null);
 
     const navigate = useNavigate()
+    const userId = Cookies.userId
+
+    //handles if user that is not logged in attempts to navigate to one of the pages
+    useEffect(() => {
+    if (!userId || !localStorage.getItem('token')) {
+        navigate('/'); 
+    }
+    }, [userId, navigate]);
 
     const handleFileChange = (e) => {
         const file = e.target.files[0]

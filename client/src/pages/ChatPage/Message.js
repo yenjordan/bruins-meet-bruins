@@ -16,7 +16,14 @@ export default function ChatApp() {
 
   const handleSwipe = () => {
     navigate('/SwipePage')
-}
+  }
+      //handles if user that is not logged in attempts to navigate to one of the pages
+  useEffect(() => {
+  if (!userId || !localStorage.getItem('token')) {
+      navigate('/'); 
+      }
+  }, [userId, navigate]);
+
   //fetch our connections of the current users
     useEffect(() => {
       const fetchConnections = async () =>{
