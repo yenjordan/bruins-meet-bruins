@@ -25,7 +25,7 @@ cd bruins-meet-bruins
 If you haven't installed Node.js at this point, you can do so [here](https://nodejs.org/en/download/package-manager)
 Next, you will need to install the dependencies of both the client and server side. To do so, cd into the client directory first, then run npm install, then cd into the server directory, and run npm install again. To start up/run the program, in the client dir, you want to run 'npm run start', and in the server dir, you want to run 'npm run:start'.
 
-**Note: You will also need to create/add a new directory/folder under 'server' called uploads- this will be your storage/container for holding uploaded profile images.** 
+**Note: You will also need to create/add a new directory/folder under 'server' called 'uploads' - this will be your storage/container for holding uploaded profile images.** 
 
 (Alternatively, you can also open two different terminals if you are using a code editor like VSCode, and then have each terminal be desiginated for the client and server respectivley)
 
@@ -90,15 +90,15 @@ This project was boostrapped with the MERN stack: MongoDB, Express.js, React.js,
 We utilized React for our frontend interface, Express for our middleware to create POST and GET routes/requests on a Node.js server, sending requests from our client to server and also server to client
 
 ## Creators/Contributers
-Larry Lim
+Larry Lim, GitHub Id: larryl777
 
-Julia Lou
+Julia Lou, GitHub Id: lou-julia
 
-Marc Anthony Trujillo
+Marc Anthony Trujillo, GitHub Id: MarcT03
 
-Htet Min Khant
+Htet Min Khant, GitHub Id: Htet Min Khant
 
-Jordan Yen
+Jordan Yen, GitHub Id: yenjordan
 
 
 
