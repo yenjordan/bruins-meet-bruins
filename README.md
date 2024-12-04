@@ -1,9 +1,9 @@
 # Bruins Meets Bruins
 
-Bruin Meets Bruins is a client+server web application dedicated spefically towards UCLA students, with the purpose of making it easier for students to find meaningful connections with other Bruins based on shared interests and values. 
+Bruin Meets Bruins is a client+server web application dedicated specifically towards UCLA students, with the purpose of making it easier for students to find meaningful connections with other Bruins based on shared interests and values. 
 Our platform focuses exclusively on the UCLA community to foster a more personalized and relevant experience, helping students connect with people who share their campus life, activities, and goals.
 
-Video demo of our web appliction: [here](https://www.youtube.com/watch?v=ttj-LaUd6BE)
+Video demo of our web application: [here](https://www.youtube.com/watch?v=ttj-LaUd6BE)
 
 ### Features:
 
@@ -27,7 +27,7 @@ Next, you will need to install the dependencies of both the client and server si
 
 **Note: You will also need to create/add a new directory/folder under 'server' called 'uploads' - this will be your storage/container for holding uploaded profile images.** 
 
-(Alternatively, you can also open two different terminals if you are using a code editor like VSCode, and then have each terminal be desiginated for the client and server respectivley)
+(Alternatively, you can also open two different terminals if you are using a code editor like VSCode, and then have each terminal be designated for the client and server respectively)
 
 (Do note that npm could take some time to start the server, and if it does not automatically open up on your browser, then you can manually enter 'http://localhost:3000/' into your browser)
 
@@ -58,7 +58,7 @@ Severpackage.json:
 ```
 
 ### Connecting to our database + .env file
-Our application utlizes MongoDB Atlas' database, if you do not already have one, you can navigate [here](https://www.mongodb.com/) to create an account
+Our application utilizes MongoDB Atlas' database, if you do not already have one, you can navigate [here](https://www.mongodb.com/) to create an account
 
 Create a new project and navigate to the 'Clusters' under the 'DATABASE' section- from here, find 'Create a new cluster' (can be named anything), and you would need to choose a new provider, where you can select AWS. Make sure you save/remember your username and password you created for the cluster. Now that we have created a cluster, you can additionally click on
 'Browse Collections', then make sure ur on the collections tab, and click on 'Create Database' and name the databases of your cluster whatever you want, and this will be the main container of all our different tables/collections we want to store.
@@ -77,7 +77,7 @@ Replace <db_username> with your username for the cluster, and <db_password> with
 
 You can additionally replace <database_name> with the name of the database you created from earlier(you can find the name of the database you want to use by clicking on 'Browse collections' of your cluster, you can also create one now if you haven't already)
 
-Then, because this program utlizes JWT (JSON Web Token) for user authentication, you will also want to add your JWT_SECRET to the .env file, in the form of:
+Then, because this program utilizes JWT (JSON Web Token) for user authentication, you will also want to add your JWT_SECRET to the .env file, in the form of:
 ```bash
 JWT_SECRET='<yourkey>'
 ```
@@ -85,11 +85,11 @@ Replace < yourkey > with any string key/password you desire, making sure you kee
 
 ## Technology Stacks Used
 
-This project was boostrapped with the MERN stack: MongoDB, Express.js, React.js, and Node.js.
+This project was bootstrapped with the MERN stack: MongoDB, Express.js, React.js, and Node.js.
 
 We utilized React for our frontend interface, Express for our middleware to create POST and GET routes/requests on a Node.js server, sending requests from our client to server and also server to client
 
-## Creators/Contributers
+## Creators/Contributors
 Larry Lim, GitHub Id: larryl777
 
 Julia Lou, GitHub Id: lou-julia
