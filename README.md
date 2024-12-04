@@ -3,6 +3,8 @@
 Bruin Meets Bruins is a client+server web application dedicated spefically towards UCLA students, with the purpose of making it easier for students to find meaningful connections with other Bruins based on shared interests and values. 
 Our platform focuses exclusively on the UCLA community to foster a more personalized and relevant experience, helping students connect with people who share their campus life, activities, and goals.
 
+Video demo of our web appliction: [here](https://www.youtube.com/watch?v=ttj-LaUd6BE)
+
 ### Features:
 
 1.  Swipe left (dislike) or right (like) on a dynamically displayed user profile card, with an additional displayed match percentage ordered from highest to lowest for each user card
