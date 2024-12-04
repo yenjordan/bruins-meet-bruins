@@ -96,7 +96,7 @@ Julia Lou, GitHub Id: lou-julia
 
 Marc Anthony Trujillo, GitHub Id: MarcT03
 
-Htet Min Khant, GitHub Id: Htet Min Khant
+Htet Min Khant, GitHub Id: HtetMinKhant19
 
 Jordan Yen, GitHub Id: yenjordan
 
