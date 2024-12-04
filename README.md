@@ -67,7 +67,7 @@ Once we have done that, navigate back to the 'Clusters' tab, then click on 'Conn
 **Important: Under 'Security', find 'Network Access', and make sure your IP Address is correct as shown. If you want to access the database through various networks, you can add '0.0.0.0/0' as a connection address.**
 
  
-Copy the connection string from your cluster, listed from step 3, and then navigate to the root directory of your cloned repository, and then create a file called '.env' 
+Copy the connection string from your cluster, listed from step 3, and then navigate to the 'server' directory of your cloned repository, and then create a file called '.env' 
 
 In your .env file, you want to copy paste the connection string in the form of: 
 ```bash
