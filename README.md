@@ -12,6 +12,7 @@ Required functionality:
 2. Upload data from the client to the back-end: Each user must upload information like name, age, and photo to the site which persists in the server's file system.
 3. Display dynamic data to the user: The swipe page will feature profile cards based on highest compatibility first. 
 4. Meaningfully search through server-side data: The user may search for a specific text conversation in the chat page.
+
 Additional Distinct Features:
 1.  Swipe left (dislike) or right (like) on a dynamically displayed user profile card, with an additional displayed match percentage ordered from highest to lowest for each user card.
 2.  Matches can be filtered through a preference table that you can fill out, consisting of age ranges and specific hobby preferences.
