@@ -10,13 +10,16 @@ Video demo of our web application: [here](https://www.youtube.com/watch?v=ttj-La
 Required functionality:
 1. User Authentication: (Log In Page) Each user must create a unique username (ucla.edu email) and password that must be entered in order to enter the site.
 2. Upload data from the client to the back-end: (Create Profile Page, Preference Page) Each user must upload information like name, age, and photo to the site which persists in the server's file system.
-3. Display dynamic data to the user: (Swipe Page) The swipe page will feature profile cards based on compatibility/matches. 
+3. Display dynamic data to the user: (Swipe Page) The swipe page will feature/display profile cards based on compatibility/matches. 
 4. Meaningfully search through server-side data: 
-(Swipe Page) After setting their specific preferences, the app then does a server side search in the database- 
-filtering and storing users who lie within the given age range, where these users will then be displayed as stated in the point #3. (Chat Page) The user may also search for a specific text conversation in the chat page.
+(Swipe Page) After setting their specific preferences, the app then does a server side search- 
+searching for certain ages (data content) of users in the database that lies within the given range, 
+where these users will then be displayed as stated in the point #3. 
+
+(Chat Page) The user may also search/select a specific text conversation with each connected user in the chat page.
 
 Additional Distinct Features:
-1.  (Swipe Page) Users may swipe left (dislike) or right (like) on a dynamically displayed user profile card. If the user swipes left, then the profile card wil not show up again. Once two users both swipe right on each other, a connection will be formed. 
+1.  (Swipe Page) Users may swipe left (dislike) or right (like) on a dynamically displayed user profile card. If the user swipes left, then the profile card will not show up again. Once two users both swipe right on each other, a connection will be formed. 
 2.  (Swipe Page) Match percentage displayed on each profile card based on shared interests and preferences, such that the user can quickly decide interest based on physical appearance and compability. 
 3.  (Preference Page) Matches can be filtered through a preference table that you can fill out, consisting of age ranges and specific hobby preferences. Preferences may be changed at any time if the user decides to have a change of interests. Profile card shuffling and reevaluation of match percentage will be done automatically. 
 4.  (Chat Feature) Chat feature to talk with each other once two users swipe right on each other (forms a connection between two users). Chat logs will be saved even after logging out. 
