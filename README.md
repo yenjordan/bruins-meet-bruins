@@ -15,7 +15,6 @@ Required functionality:
 (Swipe Page) After setting their specific preferences, the app then does a server side search- 
 searching for certain ages (data content) of users in the database that lies within the given range, 
 where these users will then be displayed as stated in the point #3. 
-
 (Chat Page) The user may also search/select a specific text conversation with each connected user in the chat page.
 
 Additional Distinct Features:
