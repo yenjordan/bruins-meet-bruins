@@ -18,7 +18,7 @@ where these users will then be displayed as stated in the point #3.
 
 Additional Distinct Features:
 1.  (Swipe Page) Users may swipe left (dislike) or right (like) on a dynamically displayed user profile card. If the user swipes left, then the profile card will not show up again. Once two users both swipe right on each other, a connection will be formed. 
-2.  (Swipe Page) Match percentage displayed on each profile card based on the preferences table and user bios, such that the user can quickly decide interest based on physical appearance and compability. 
+2.  (Swipe Page) Calculated match percentage displayed on each profile card based on (matched keywords from userbio) / (total # of preferences from preference table), such that the user can quickly decide interest based on physical appearance and compability. 
 Additionally, preferences may be changed at any time if the user decides to have a change of interests. Profile card shuffling and reevaluation of match percentage will be done automatically after saving.
 3.  (Chat Feature) Chat feature to talk with each other once two users swipe right on each other (forms a connection between two users). Chat logs will be saved even after logging out. 
 
