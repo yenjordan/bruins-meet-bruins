@@ -102,15 +102,15 @@ This project was bootstrapped with the MERN stack: MongoDB, Express.js, React.js
 We utilized React for our frontend interface, Express for our middleware to create POST and GET routes/requests on a Node.js server, sending requests from our client to server and also server to client
 
 ## Creators/Contributors
-Larry Lim, GitHub Id: larryl777
+Larry Lim, GitHub Id: [larryl777](https://github.com/larryl777)
 
-Julia Lou, GitHub Id: lou-julia
+Julia Lou, GitHub Id: [lou-julia](https://github.com/lou-julia)
 
-Marc Anthony Trujillo, GitHub Id: MarcT03
+Marc Anthony Trujillo, GitHub Id: [MarcT03](https://github.com/MarcT03)
 
-Htet Min Khant, GitHub Id: HtetMinKhant19
+Htet Min Khant, GitHub Id: [HtetMinKhant19](https://github.com/HtetMinKhant19)
 
-Jordan Yen, GitHub Id: yenjordan
+Jordan Yen, GitHub Id: [yenjordan](https://github.com/yenjordan)
 
 
 
